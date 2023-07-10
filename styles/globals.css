@@ -1,5 +1,17 @@
+:root {
+  --c1: #302541;
+  --c2: #A882DD;
+  --c3: #20A39E;
+  --c4: #FAF9F9;
+  --c5: #DFDFDF;
+
+
+}
+
 html,
 body {
+  background-color: var(--c1);
+  color: var(--c4);
   padding: 0;
   margin: 0;
   font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
@@ -13,6 +25,7 @@ a {
 
 * {
   box-sizing: border-box;
+
 }
 
 img {
