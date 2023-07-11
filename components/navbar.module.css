@@ -18,18 +18,20 @@
     flex-direction: row;
     padding: 1rem;
     font-weight: 600;
+    font-size: 1.5em;
+    max-width: 75%;
 
 }
 
 .container a {
-    transition: text-decoration 0.5s ease;
+    text-decoration: underline solid transparent;
+    transition: text-decoration 200ms ease-in-out;
 }
 
 .container a:hover,
 .container a:focus,
 .container a:active {
-    text-decoration: underline;
-
+    text-decoration: underline solid var(--c3);
 }
 
 .divider {
