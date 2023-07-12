@@ -43,11 +43,11 @@ export default function myComp(props) {
 
 
     const takeStep = () => {
-        for (p of particles) {
+        for (let p_1 of particles) {
             let fx_sum = 0
             let fy_sum = 0
-            for (p2 of particles) {
-                if (p1 == p2) {
+            for (let p_2 of particles) {
+                if (p_1 == p_2) {
 
                 }
             }
