@@ -1,6 +1,5 @@
 import React from "react";
 import dynamic from 'next/dynamic'
-import { setQuaternionFromProperEuler } from "three/src/math/MathUtils";
 
 // Will only import `react-p5` on client-side
 const Sketch = dynamic(() => import('react-p5').then((mod) => mod.default), {
@@ -37,8 +36,8 @@ export default function myComp(props) {
         // use parent to render the canvas in this ref
         // (without that p5 will render the canvas outside of your component)
         p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef);
-        p1 = new particle(0, 0)
-        p2 = new particle(p5.windowWidth, p5.windowHeight)
+        p1 = new particle(0, 0, 0)
+        p2 = new particle(1, p5.windowWidth, p5.windowHeight)
     }
 
 
@@ -67,6 +66,7 @@ export default function myComp(props) {
         p5.ellipse(p1.x, p1.y, 15, 15);
         p5.ellipse(p2.x, p2.y, 15, 15);
         p5.noStroke()
+
         // NOTE: Do not use setState in the draw function or in functions that are executed
         // in the draw function...
         // please use normal variables or class properties for these purposes
