@@ -29,6 +29,14 @@ export default function Home() {
                             alt="Linkedin picture" />
                     </Link>
 
+                    <Link href="https://www.instagram.com/luc.barrett57/"
+                        rel="noopener noreferrer" target="_blank">
+                        <Image src="/images/instagramalt.png"
+                            width={50}
+                            height={50}
+                            alt="Instagram picture" />
+                    </Link>
+
 
                 </div>
                 <div>
