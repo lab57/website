@@ -27,44 +27,33 @@ class particle {
 }
 
 
+class myComp extends React.Component {
+    p1;
+    p2;
+    particles;
+    tstep;
+    constructor(props) {
+        super(props)
+        this.tstep = 0;
 
-export default function myComp(props) {
-    let p1;
-    let p2;
-    let particles = [p1, p2]
-    const setup = (p5, canvasParentRef) => {
+    }
+    setup = (p5, canvasParentRef) => {
         // use parent to render the canvas in this ref
         // (without that p5 will render the canvas outside of your component)
         p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef);
-        p1 = new particle(0, 0, 0)
-        p2 = new particle(1, p5.windowWidth, p5.windowHeight)
+        this.p1 = new particle(0, 0, 0)
+        this.p2 = new particle(1, p5.windowWidth, p5.windowHeight)
+        this.particles = [this.p1, this.p2]
     }
 
+    draw = (p5) => {
 
-    const takeStep = () => {
-        for (let p_1 of particles) {
-            let fx_sum = 0
-            let fy_sum = 0
-            for (let p_2 of particles) {
-                if (p_1 == p_2) {
-
-                }
-            }
-        }
-    }
-
-
-    const draw = (p5) => {
-
-        takeStep()
-
-
-
-
+        this.takeStep()
 
         p5.clear()
-        p5.ellipse(p1.x, p1.y, 15, 15);
-        p5.ellipse(p2.x, p2.y, 15, 15);
+        p5.ellipse(this.p1.x + p5.windowWidth / 2, this.p1.y + p5.windowHeight / 2, 15, 15);
+        //p5.ellipse(p5.windowWidth / 2, p5.windowHeight / 2, 15, 15);
+        p5.ellipse(this.p2.x, this.p2.y, 15, 15);
         p5.noStroke()
 
         // NOTE: Do not use setState in the draw function or in functions that are executed
@@ -72,5 +61,32 @@ export default function myComp(props) {
         // please use normal variables or class properties for these purposes
     };
 
-    return <Sketch setup={setup} draw={draw} />;
-};
+    takeStep = () => {
+        for (let p of this.particles) {
+            for (let p_2 of this.particles) {
+                if (p != p_2) {
+                    let xdif = p_2.x - p.x
+                    let ydif = p_2.y - p.y
+                    let fx = 1 * 10 ** 4 / xdif ** 2
+                    let fy = 1 * 10 ** 4 / ydif ** 2
+                    p.vx += fx * Math.sign(xdif)
+                    p.vy += fy * Math.sign(ydif)
+                    p.x += p.vx
+                    p.y += p.vy
+                }
+            }
+        }
+
+
+    }
+
+
+    render() {
+
+        return <Sketch setup={this.setup} draw={this.draw} />;
+
+    }
+
+}
+
+export default myComp
