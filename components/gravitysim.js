@@ -7,6 +7,10 @@ const Sketch = dynamic(() => import('react-p5').then((mod) => mod.default), {
 })
 
 
+
+const G = 1
+const k = 1
+
 class particle {
     constructor(id, x, y) {
         this.x = x
@@ -18,11 +22,15 @@ class particle {
     }
 
     getForce(p2) {
-        return this.m * p2.m / this.getDistanceSquared(p2)
+        return G * this.m * p2.m / this.getDistanceSquared(p2)
     }
 
     getDistanceSquared(p2) {
         return Math.sqrt((p2.x - this.x) ** 2 + (p2.y - this.y) ** 2)
+    }
+
+    getWallForce() {
+        return
     }
 }
 
@@ -51,7 +59,7 @@ class myComp extends React.Component {
         this.takeStep()
 
         p5.clear()
-        p5.ellipse(this.p1.x + p5.windowWidth / 2, this.p1.y + p5.windowHeight / 2, 15, 15);
+        p5.ellipse(this.p1.x, this.p1.y, 15, 15);
         //p5.ellipse(p5.windowWidth / 2, p5.windowHeight / 2, 15, 15);
         p5.ellipse(this.p2.x, this.p2.y, 15, 15);
         p5.noStroke()
@@ -67,10 +75,10 @@ class myComp extends React.Component {
                 if (p != p_2) {
                     let xdif = p_2.x - p.x
                     let ydif = p_2.y - p.y
-                    let fx = 1 * 10 ** 4 / xdif ** 2
-                    let fy = 1 * 10 ** 4 / ydif ** 2
-                    p.vx += fx * Math.sign(xdif)
-                    p.vy += fy * Math.sign(ydif)
+                    let F = p.getForce(p_2)
+                    let theta = Math.atan2(ydif, xdif)
+                    p.vx += F * Math.cos(theta)
+                    p.vy += F * Math.sin(theta)
                     p.x += p.vx
                     p.y += p.vy
                 }
