@@ -32,22 +32,35 @@ class particle {
     applyWallForce(p5) {
         //handle x
         let d = 40
-        let f = 2
-        if (this.x < d) {
-            this.vx += f
-        }
-        else if (this.x > p5.windowWidth - d) {
-            this.vx -= f
-        }
-        if (this.y < d) {
-            this.vy += f
-        }
-        else if (this.y > p5.windowHeight - d) {
-            this.vy -= f
-        }
+        let k = 1e3
+        this.vx += k / (this.x) ** 2
+        this.vx -= k / (p5.windowWidth - this.x) ** 2
+        this.vy += k / (this.y) ** 2
+        this.vy -= k / (p5.windowHeight - this.y) ** 2
 
     }
     applyVelocities() {
+
+        if (this.vx > 1) {
+            this.vx -= 2
+
+        }
+        if (this.vx < 1) {
+            this.vx += 2
+            console.log("aa")
+
+        }
+
+        if (this.vy > 1) {
+            this.vy -= 2
+
+        }
+        if (this.vy < 1) {
+            this.vy += 2
+
+        }
+
+
         this.x += this.vx
         this.y += this.vy
     }
@@ -60,6 +73,7 @@ class particle {
         this.y = this.next[1]
     }
 }
+
 
 
 class myComp extends React.Component {
@@ -97,6 +111,7 @@ class myComp extends React.Component {
         p5.clear()
         for (particle of this.particles) {
             p5.ellipse(particle.x, particle.y, 15, 15);
+            p5.text(particle.vy, particle.x, particle.y)
         }
         p5.noStroke()
 
