@@ -7,22 +7,24 @@ const Sketch = dynamic(() => import('react-p5').then((mod) => mod.default), {
 
 
 
-const G = 9
+const G = 1
 const k = 1
 
 class particle {
-    constructor(id, x, y, vx0, vy0) {
+    constructor(id, x, y, v0x, v0y) {
         this.x = x
         this.y = y
         this.m = 1
-        this.vx = vx0
-        this.vy = vy0
+        this.vx = v0x
+        this.vy = v0y
         this.id = id
+        this.r = 15 ** 2
         this.next = null
     }
 
     getForce(p2) {
-        return G * this.m * p2.m / this.getDistanceSquared(p2)
+        let d = this.getDistanceSquared(p2)
+        return 4 * (6) * ((this.r / d) ** 6 - (this.r / d) ** 3)
     }
 
     getDistanceSquared(p2) {
@@ -31,31 +33,17 @@ class particle {
 
     applyWallForce(p5) {
         //handle x
-        let d = 40
-        let f = 2
-        if (this.x < d) {
-            this.vx += f
-        }
-        else if (this.x > p5.windowWidth - d) {
-            this.vx -= f
-        }
-        if (this.y < d) {
-            this.vy += f
-        }
-        else if (this.y > p5.windowHeight - d) {
-            this.vy -= f
-        }
+        this.vx += 10 * (1 / (this.x) ** 2 - 1 / (p5.windowWidth - this.x) ** 2)
+        this.vy += 10 * (1 / (this.y) ** 2 - 1 / (p5.windowHeight - this.y) ** 2)
 
     }
     applyVelocities() {
         this.x += this.vx
         this.y += this.vy
     }
-    apply(p5) {
-
+    apply() {
         this.vx = this.next[2]
         this.vy = this.next[3]
-        this.applyWallForce(p5)
         this.x = this.next[0]
         this.y = this.next[1]
     }
@@ -82,7 +70,7 @@ class myComp extends React.Component {
         this.p3 = new particle(1, 5, p5.windowHeight - 1)
 
         this.particles = []
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 35; i++) {
             this.particles.push(new particle(i, Math.random() * p5.windowWidth, Math.random() * p5.windowHeight,
                 (Math.random() - 0.5) * 3, (Math.random() - 0.5) * 3))
         }
@@ -93,7 +81,8 @@ class myComp extends React.Component {
     draw = (p5) => {
 
         this.takeStep(p5)
-
+        let c = p5.color(255, 255, 255, 150)
+        p5.fill(c)
         p5.clear()
         for (particle of this.particles) {
             p5.ellipse(particle.x, particle.y, 15, 15);
@@ -106,7 +95,6 @@ class myComp extends React.Component {
     };
 
     takeStep = (p5) => {
-        console.log("loop")
         for (let p of this.particles) {
             let Fx = 0
             let Fy = 0
@@ -125,7 +113,6 @@ class myComp extends React.Component {
                 }
             }
 
-
             let ax = Fx / p.m
             let ay = Fy / p.m
 
@@ -137,16 +124,16 @@ class myComp extends React.Component {
             let newy = p.y + newvy
 
             p.next = [newx, newy, newvx, newvy]
+
+
         }
         for (let p of this.particles) {
-
-            p.apply(p5)
+            p.applyWallForce(p5)
+            p.apply()
         }
 
-
-
-
     }
+
 
 
     render() {
