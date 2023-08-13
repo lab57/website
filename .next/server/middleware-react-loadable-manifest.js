@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST='{"../components/gravitysim.js -> react-p5":{"id":5320,"files":["static/chunks/fcfa8dee.754bd43bddeb6f44.js"]},"../components/gravitysim3.js -> react-p5":{"id":5320,"files":["static/chunks/fcfa8dee.754bd43bddeb6f44.js"]},"_app.js -> ../components/gravitysim3":{"id":1362,"files":["static/chunks/362.b7aa0e8c309f4a1b.js"]}}';
