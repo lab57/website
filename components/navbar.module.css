@@ -24,15 +24,19 @@
 }
 
 .container a {
+    transition: text-decoration 400ms ease-in-out;
     text-decoration: underline solid transparent;
-    transition: text-decoration 200ms ease-in-out;
+    transition: all 100ms ease-in-out;
 }
 
 .container a:hover,
 .container a:focus,
 .container a:active {
-    text-decoration: underline solid var(--c3);
+    /* text-decoration: underline solid var(--c3);*/
+    transform: scale(1.05)
 }
+
+
 
 .divider {
     height: 2px;

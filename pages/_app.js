@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }) {
         <div className={styles2.mainAppContainer}>
             <div className={styles2.backgroundContent}>
 
-                <Gravity className={styles2.background} />
+
             </div>
 
             <div className={styles2.topContent}>
@@ -26,3 +26,7 @@ export default function App({ Component, pageProps }) {
 
     );
 }
+/**
+ * 
+ * <Gravity className={styles2.background} />
+ */
