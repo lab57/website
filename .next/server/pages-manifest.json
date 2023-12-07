@@ -1,11 +1,6 @@
 {
-  "/404": "pages/404.html",
-  "/_error": "pages/_error.js",
-  "/canvas": "pages/canvas.html",
-  "/newPage": "pages/newPage.html",
-  "/old_index": "pages/old_index.html",
-  "/research": "pages/research.html",
-  "/": "pages/index.html",
   "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js"
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/": "pages/index.js"
 }

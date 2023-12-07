@@ -1,20 +1,14 @@
 {
-  "../components/gravitysim.js -> react-p5": {
-    "id": 5320,
-    "files": [
-      "static/chunks/fcfa8dee.754bd43bddeb6f44.js"
-    ]
-  },
   "../components/gravitysim3.js -> react-p5": {
-    "id": 5320,
+    "id": "../components/gravitysim3.js -> react-p5",
     "files": [
-      "static/chunks/fcfa8dee.754bd43bddeb6f44.js"
+      "static/chunks/node_modules_react-p5_build_index_js.js"
     ]
   },
   "_app.js -> ../components/gravitysim3": {
-    "id": 1362,
+    "id": "_app.js -> ../components/gravitysim3",
     "files": [
-      "static/chunks/362.b7aa0e8c309f4a1b.js"
+      "static/chunks/components_gravitysim3_js.js"
     ]
   }
 }

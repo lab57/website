@@ -111,13 +111,21 @@ function generateParticle(center) {
 
 function combineParticles(particles) {
     let remaining_particles = []
-    for (let p of particles) {
-        for (let p2 of particles) {
+    for (let i = 0; i < particles.length; i++) {
+        let p = particles[i]
+        for (let j = i + 1; j < particles.length; j++) {
+            let p2 = particles[j]
             if (p ** 2 + p2 ** 2 < p.radius ** 2) {
                 let new_p = new particle(p.id, remaining_particles, p.mass + p2.mass, p.pos.x, p.pos.y, p.vel.x + p2.vel.x, p.vel.y + p2.vel.y)
+                remaining_particles += new_p
+            }
+            else {
+                remaining_particles += p
+                remaining_particles += p2
             }
         }
     }
+    return remaining_particles
 }
 
 
@@ -178,6 +186,10 @@ class myComp extends React.Component {
             p.update(.5, p5)
 
         }
+        let new_plist = combineParticles(this.particles)
+        this.particles = new_plist
+        console.log(this.particles)
+        this.particles.map((x) => x.particles = new_plist)
         this.particles.map((x) => x.apply())
 
     }
