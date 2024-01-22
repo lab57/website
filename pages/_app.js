@@ -3,6 +3,8 @@ import Navbar from "../components/navbar"
 import styles2 from "../styles/Home.module.css"
 import dynamic from 'next/dynamic'
 //import Gravity from "../components/gravitysim"
+import { Analytics } from '@vercel/analytics/react';
+
 
 const Gravity = dynamic(() => import("../components/Lorenz"), {
     ssr: false
@@ -22,6 +24,7 @@ export default function App({ Component, pageProps }) {
                 <Component {...pageProps} />
 
             </div>
+            <Analytics />
         </div >
 
     );
