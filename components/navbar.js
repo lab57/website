@@ -5,8 +5,8 @@ export default function Navbar() {
     return <div className={styles.outer}>
         <div className={styles.container}>
             <Link href="/">Home</Link>
-            <Link href="/Resume.pdf">Resume</Link>
-            <Link href="mailto: labarrett@umass.edu">Contact</Link>
+            <Link href="/CV.pdf">CV</Link>
+            <Link href="mailto: me@lucbarrett.info">Contact</Link>
         </div>
         <div className={styles.divider}></div>
     </div>

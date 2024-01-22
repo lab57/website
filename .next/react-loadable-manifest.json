@@ -1,14 +1,14 @@
 {
-  "../components/gravitysim3.js -> react-p5": {
-    "id": "../components/gravitysim3.js -> react-p5",
+  "../components/Lorenz.js -> react-p5": {
+    "id": "../components/Lorenz.js -> react-p5",
     "files": [
       "static/chunks/node_modules_react-p5_build_index_js.js"
     ]
   },
-  "_app.js -> ../components/gravitysim3": {
-    "id": "_app.js -> ../components/gravitysim3",
+  "_app.js -> ../components/Lorenz": {
+    "id": "_app.js -> ../components/Lorenz",
     "files": [
-      "static/chunks/components_gravitysim3_js.js"
+      "static/chunks/components_Lorenz_js.js"
     ]
   }
 }

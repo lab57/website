@@ -4,7 +4,7 @@ import styles2 from "../styles/Home.module.css"
 import dynamic from 'next/dynamic'
 //import Gravity from "../components/gravitysim"
 
-const Gravity = dynamic(() => import("../components/gravitysim3"), {
+const Gravity = dynamic(() => import("../components/Lorenz"), {
     ssr: false
 });
 

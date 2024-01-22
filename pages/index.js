@@ -16,7 +16,7 @@ export default function Home() {
                 <h1 className={styles.title}>
                     Luc Barrett
                 </h1>
-                <p className={styles.description}>Physics & Computer Science</p>
+                <p className={styles.description}>B.S. Physics, B.S. Math, B.S. Computer Science</p>
                 <p className={styles.description}>Currently Studying at UMass Amherst</p>
 
                 <h2 className={styles.findme}></h2>
@@ -29,13 +29,13 @@ export default function Home() {
                             alt="Linkedin picture" />
                     </Link>
 
-                    <Link href="https://www.instagram.com/luc.barrett57/"
+                    {/* <Link href="https://www.instagram.com/luc.barrett57/"
                         rel="noopener noreferrer" target="_blank">
                         <Image src="/images/instagramalt.png"
                             width={50}
                             height={50}
                             alt="Instagram picture" />
-                    </Link>
+                    </Link> */}
 
 
                 </div>
