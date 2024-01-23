@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{\"../components/Lorenz.js -> react-p5\":{\"id\":\"../components/Lorenz.js -> react-p5\",\"files\":[\"static/chunks/node_modules_react-p5_build_index_js.js\"]},\"_app.js -> ../components/Lorenz\":{\"id\":\"_app.js -> ../components/Lorenz\",\"files\":[\"static/chunks/components_Lorenz_js.js\"]}}"
+self.__REACT_LOADABLE_MANIFEST="{\"../components/Lorenz.js -> react-p5\":{\"id\":\"../components/Lorenz.js -> react-p5\",\"files\":[\"static/chunks/node_modules_react-p5_build_index_js.js\"]}}"

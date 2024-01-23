@@ -17,7 +17,8 @@ export default function Navbar() {
  * 
  * 
  *             <Link href="/">Home</Link>
-            <Link href="/research">Research</Link>
+
+<Link href="/research">Research</Link>
             <Link href="/Resume.pdf">Resume</Link>
             <Link href="/newPage">Projects</Link>
             <Link href="/newPage">Contact</Link>

@@ -67,87 +67,28 @@ class particle {
     }
 }
 
-
-
-class myComp extends React.Component {
+class SSSS extends React.Component {
     p1;
     p2;
     p3;
     particles;
     tstep;
-    constructor(props) {
-        super(props)
-        this.tstep = 0;
-        this.pg;
-
+    pg;
+    constructor() {
+        console.log("aaa")
+        super()
+        this.renderRef = React.createRef()
+        this.state = {
+            x: 100,
+            y: 100
+        }
     }
-
-
     coordinateShift = (p5, x, y, z) => {
         let w = p5.windowWidth
         let h = p5.windowHeight
         return [(35 * x + w / 2), (h / 2 - 15 * y), z]
 
     }
-
-    setup = (p5, canvasParentRef) => {
-        // use parent to render the canvas in this ref
-        // (without that p5 will render the canvas outside of your component)
-        p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef);
-        this.pg = p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef)
-        //this.p1 = new particle(1, 1, 1)
-        //this.p2 = new particle(1, p5.windowWidth - 1, p5.windowHeight - 1)
-        //this.p3 = new particle(1, 5, p5.windowHeight - 1)
-
-        this.particles = []
-        for (let i = 0; i < 25; i++) {
-            this.particles.push(new particle(i, (Math.random() - .5) * 2 * 10, (Math.random() - .5) * 2 * 10, (Math.random() - .5) * 2 * 10,
-                (Math.random() - .5) * 2 * 5, (Math.random() - .5) * 2 * 5, (Math.random() - .5) * 2 * 5))
-        }
-
-        //this.particles.push(new particle(0, ...coordinateShift(-w / 3, -0), vx, vy))
-        //this.particles.push(new particle(0, ...coordinateShift(0, 0), -2 * vx, -2 * vy))
-
-
-
-    }
-
-    draw = (p5) => {
-
-
-
-        this.takeStep(p5)
-        p5.clear()
-
-
-        for (particle of this.particles) {
-            let transform = this.coordinateShift(p5, particle.current.x, particle.current.y, particle.current.z)
-            p5.ellipse(transform[0], transform[1], 10, 10);
-            //p5.text(particle.id, transform[0], transform[1])
-            let s = 10
-            let step = s / 25
-
-            for (let t of particle.tail) {
-                let tr = this.coordinateShift(p5, t.x, t.y, t.z)
-                if (s > 1) {
-                    s = s - step
-
-                }
-                p5.ellipse(tr[0], tr[1], s, s)
-            }
-        }
-        p5.noStroke()
-
-        let t2 = this.coordinateShift(p5, 8.48, 8.48, 0)
-        let t3 = this.coordinateShift(p5, -8.48, -8.48, 0)
-        //p5.ellipse(t2[0], t2[1], 15, 15);
-        //p5.ellipse(t3[0], t3[1], 15, 15);
-
-        // NOTE: Do not use setState in the draw function or in functions that are executed
-        // in the draw function...
-        // please use normal variables or class properties for these purposes
-    };
-
     takeStep = (p5) => {
 
 
@@ -157,14 +98,173 @@ class myComp extends React.Component {
             x.applyState();
         })
     }
+    componentDidMount() {
+        const p5 = require("p5")
+        this.sketch = new p5(p => {
+            p.setup = () => {
+                p.createCanvas(p.windowWidth, p.windowHeight)
+                    .parent(this.renderRef.current);
+                this.particles = [];
+                for (let i = 0; i < 25; i++) {
+                    this.particles.push(new particle(i, (Math.random() - .5) * 2 * 10, (Math.random() - .5) * 2 * 10, (Math.random() - .5) * 2 * 10,
+                        (Math.random() - .5) * 2 * 5, (Math.random() - .5) * 2 * 5, (Math.random() - .5) * 2 * 5))
+                }
+                this.pg = p.createGraphics(p.windowWidth, p.windowHeight);
+                this.pg.noStroke();
 
 
+            }
+
+            p.windowResized = () => {
+                p.resizeCanvas(p.windowWidth, p.windowHeight)
+                let n = p.createGraphics(p.windowWidth, p.windowHeight);
+                n.image(this.pg, 0, 0, n.width, n.height)
+                n.noStroke();
+                this.pg = n
+            }
+
+            p.draw = () => {
+                this.takeStep(p)
+                p.clear()
+                p.smooth()
+
+
+
+                for (particle of this.particles) {
+                    let transform = this.coordinateShift(p, particle.current.x, particle.current.y, particle.current.z)
+                    p.ellipse(transform[0], transform[1], 10, 10);
+                    //p5.text(particle.id, transform[0], transform[1])
+                    let s = 10
+                    let step = s / 25
+
+                    for (let t of particle.tail) {
+                        let tr = this.coordinateShift(p, t.x, t.y, t.z)
+                        if (s > 1) {
+                            s = s - step
+
+                        }
+                        else {
+                            //this.pg.ellipse(tr[0], tr[1], s, s)
+                        }
+                        p.ellipse(tr[0], tr[1], s, s)
+
+                    }
+                }
+                p.image(this.pg, 0, 0)
+                p.noStroke()
+
+
+            }
+
+
+        })
+    }
     render() {
-
-        return <Sketch setup={this.setup} draw={this.draw} />;
-
+        return (
+            <div ref={this.renderRef}></div>
+        );
     }
 
 }
 
-export default myComp
+// class myComp extends React.Component {
+//     p1;
+//     p2;
+//     p3;
+//     particles;
+//     tstep;
+//     constructor(props) {
+//         super(props)
+//         this.tstep = 0;
+//         this.pg;
+
+//     }
+
+
+//     coordinateShift = (p5, x, y, z) => {
+//         let w = p5.windowWidth
+//         let h = p5.windowHeight
+//         return [(35 * x + w / 2), (h / 2 - 15 * y), z]
+
+//     }
+
+//     setup = (p5, canvasParentRef) => {
+//         console.log('setup')
+//         // use parent to render the canvas in this ref
+//         // (without that p5 will render the canvas outside of your component)
+//         p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef);
+//         this.pg = p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef)
+//         //this.p1 = new particle(1, 1, 1)
+//         //this.p2 = new particle(1, p5.windowWidth - 1, p5.windowHeight - 1)
+//         //this.p3 = new particle(1, 5, p5.windowHeight - 1)
+
+//         this.particles = []
+//         for (let i = 0; i < 25; i++) {
+//             this.particles.push(new particle(i, (Math.random() - .5) * 2 * 10, (Math.random() - .5) * 2 * 10, (Math.random() - .5) * 2 * 10,
+//                 (Math.random() - .5) * 2 * 5, (Math.random() - .5) * 2 * 5, (Math.random() - .5) * 2 * 5))
+//         }
+
+//         //this.particles.push(new particle(0, ...coordinateShift(-w / 3, -0), vx, vy))
+//         //this.particles.push(new particle(0, ...coordinateShift(0, 0), -2 * vx, -2 * vy))
+
+
+
+//     }
+
+//     draw = (p5) => {
+
+
+
+//         this.takeStep(p5)
+//         p5.clear()
+//         p5.smooth()
+
+//         for (particle of this.particles) {
+//             let transform = this.coordinateShift(p5, particle.current.x, particle.current.y, particle.current.z)
+//             p5.ellipse(transform[0], transform[1], 10, 10);
+//             //p5.text(particle.id, transform[0], transform[1])
+//             let s = 10
+//             let step = s / 25
+
+//             for (let t of particle.tail) {
+//                 let tr = this.coordinateShift(p5, t.x, t.y, t.z)
+//                 if (s > 1) {
+//                     s = s - step
+
+//                 }
+//                 p5.ellipse(tr[0], tr[1], s, s)
+//             }
+//         }
+//         p5.noStroke()
+//         //console.log(p5.frameRate())
+
+//         let t2 = this.coordinateShift(p5, 8.48, 8.48, 0)
+//         let t3 = this.coordinateShift(p5, -8.48, -8.48, 0)
+//         //p5.ellipse(t2[0], t2[1], 15, 15);
+//         //p5.ellipse(t3[0], t3[1], 15, 15);
+
+//         // NOTE: Do not use setState in the draw function or in functions that are executed
+//         // in the draw function...
+//         // please use normal variables or class properties for these purposes
+//     };
+
+//     takeStep = (p5) => {
+
+
+//         this.particles.map((x) => {
+//             //console.log(x.current.x, x.current.y)
+//             x.rk4Step(sigma, rho, beta, deltat);
+//             x.applyState();
+//         })
+//     }
+
+
+//     render() {
+
+//         return <Sketch setup={this.setup} draw={this.draw} />;
+
+//     }
+
+// }
+
+export default SSSS

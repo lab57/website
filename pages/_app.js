@@ -6,16 +6,17 @@ import dynamic from 'next/dynamic'
 import { Analytics } from '@vercel/analytics/react';
 
 
-const Gravity = dynamic(() => import("../components/Lorenz"), {
-    ssr: false
-});
+// const Gravity = dynamic(() => import("../components/Lorenz"), {
+//     ssr: false
+// });
+import SSSS from "../components/Lorenz"
 
 export default function App({ Component, pageProps }) {
 
     return (
         <div className={styles2.mainAppContainer}>
             <div className={styles2.backgroundContent}>
-                <Gravity className={styles2.background} />
+                <SSSS className={styles2.background} />
 
             </div>
 
