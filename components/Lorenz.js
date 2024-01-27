@@ -10,7 +10,20 @@ const Sketch = dynamic(() => import('react-p5').then((mod) => mod.default), {
 
 const deltat = .001
 const maxTailLength = 1000;
-const sigma = 10, rho = 28, beta = 8 / 3;//8 / 3;
+let sigma = 10, rho = 28, beta = 8 / 3;//8 / 3;
+let coordinateShift = (p5, x, y, z) => {
+    let w = p5.windowWidth
+    let h = p5.windowHeight
+    return [(35 * x + w / 2), (h / 2 - 15 * y), z]
+
+}
+
+let inverseShift = (p5, x, y) => {
+    let w = p5.windowWidth
+    let h = p5.windowHeight
+    return [(x - w / 2) / 35, (+h / 2 - y) / 15, 0]
+
+}
 class particle {
     constructor(id, x0, y0, z0, vx0, vy0, vz0) {
         this.m = 1;
@@ -67,30 +80,27 @@ class particle {
     }
 }
 
-class SSSS extends React.Component {
+class Lorenz extends React.Component {
     p1;
     p2;
     p3;
     particles;
+    preDrawn;
     tstep;
     pg;
+    pCount = 0;
     constructor() {
         console.log("aaa")
         super()
         this.renderRef = React.createRef()
+        this.preDrawn = []
         this.state = {
             x: 100,
             y: 100
         }
     }
-    coordinateShift = (p5, x, y, z) => {
-        let w = p5.windowWidth
-        let h = p5.windowHeight
-        return [(35 * x + w / 2), (h / 2 - 15 * y), z]
 
-    }
     takeStep = (p5) => {
-
 
         this.particles.map((x) => {
             //console.log(x.current.x, x.current.y)
@@ -105,12 +115,25 @@ class SSSS extends React.Component {
                 p.createCanvas(p.windowWidth, p.windowHeight)
                     .parent(this.renderRef.current);
                 this.particles = [];
+
+                let topRight = coordinateShift(p5, p5.width / 2, p5.height / 2, 0)
+                let minR = 15//Math.sqrt(topRight[0] ** 2 + topRight[1] ** 2)
+
                 for (let i = 0; i < 25; i++) {
-                    this.particles.push(new particle(i, (Math.random() - .5) * 2 * 10, (Math.random() - .5) * 2 * 10, (Math.random() - .5) * 2 * 10,
-                        (Math.random() - .5) * 2 * 5, (Math.random() - .5) * 2 * 5, (Math.random() - .5) * 2 * 5))
+                    // this.particles.push(new particle(i, (Math.random() - .5) * 2 * 10, (Math.random() - .5) * 2 * 10, (Math.random() - .5) * 2 * 10,
+                    //     (Math.random() - .5) * 2 * 5, (Math.random() - .5) * 2 * 5, (Math.random() - .5) * 2 * 5))
+                    let theta = Math.random() * Math.PI * 2
+                    //let p = new particle(i, 0, 0, Math.random() * 30, 0, 0, 0)
+                    let part = new particle(i, minR * Math.cos(theta), minR * Math.sin(theta), Math.random() * 30,
+                        50, 50, 0)
+                    //0, 0, 0)
+                    this.particles.push(part)
                 }
                 this.pg = p.createGraphics(p.windowWidth, p.windowHeight);
                 this.pg.noStroke();
+                p.frameRate(45)
+                p.fill(p.color("#C3C3E6"))
+                //p.tint(255, 50)
 
 
             }
@@ -123,22 +146,38 @@ class SSSS extends React.Component {
                 this.pg = n
             }
 
+            p.mouseClicked = () => {
+                console.log("click!")
+                let t = inverseShift(p, p.mouseX, p.mouseY)
+                let part = new particle(0, t[0] + Math.random() * .2, t[1] + Math.random() * .2, 0, 0, 0, 0);
+                this.particles.push(part)
+            }
+
+            p.keyTyped = () => {
+                if (p.key == "x") {
+                    this.particles.shift()
+                }
+            }
+
             p.draw = () => {
                 this.takeStep(p)
                 p.clear()
                 p.smooth()
+                let minR = 15//Math.sqrt(topRight[0] ** 2 + topRight[1] ** 2)
 
+                if (this.preDrawn.length != 0) {
+                    this.particles.push(this.preDrawn.pop())
+                }
 
-
-                for (particle of this.particles) {
-                    let transform = this.coordinateShift(p, particle.current.x, particle.current.y, particle.current.z)
+                for (let part of this.particles) {
+                    let transform = coordinateShift(p, part.current.x, part.current.y, part.current.z)
                     p.ellipse(transform[0], transform[1], 10, 10);
-                    //p5.text(particle.id, transform[0], transform[1])
+                    //p5.text(part.id, transform[0], transform[1])
                     let s = 10
                     let step = s / 25
 
-                    for (let t of particle.tail) {
-                        let tr = this.coordinateShift(p, t.x, t.y, t.z)
+                    for (let t of part.tail) {
+                        let tr = coordinateShift(p, t.x, t.y, t.z)
                         if (s > 1) {
                             s = s - step
 
@@ -167,104 +206,4 @@ class SSSS extends React.Component {
 
 }
 
-// class myComp extends React.Component {
-//     p1;
-//     p2;
-//     p3;
-//     particles;
-//     tstep;
-//     constructor(props) {
-//         super(props)
-//         this.tstep = 0;
-//         this.pg;
-
-//     }
-
-
-//     coordinateShift = (p5, x, y, z) => {
-//         let w = p5.windowWidth
-//         let h = p5.windowHeight
-//         return [(35 * x + w / 2), (h / 2 - 15 * y), z]
-
-//     }
-
-//     setup = (p5, canvasParentRef) => {
-//         console.log('setup')
-//         // use parent to render the canvas in this ref
-//         // (without that p5 will render the canvas outside of your component)
-//         p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef);
-//         this.pg = p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef)
-//         //this.p1 = new particle(1, 1, 1)
-//         //this.p2 = new particle(1, p5.windowWidth - 1, p5.windowHeight - 1)
-//         //this.p3 = new particle(1, 5, p5.windowHeight - 1)
-
-//         this.particles = []
-//         for (let i = 0; i < 25; i++) {
-//             this.particles.push(new particle(i, (Math.random() - .5) * 2 * 10, (Math.random() - .5) * 2 * 10, (Math.random() - .5) * 2 * 10,
-//                 (Math.random() - .5) * 2 * 5, (Math.random() - .5) * 2 * 5, (Math.random() - .5) * 2 * 5))
-//         }
-
-//         //this.particles.push(new particle(0, ...coordinateShift(-w / 3, -0), vx, vy))
-//         //this.particles.push(new particle(0, ...coordinateShift(0, 0), -2 * vx, -2 * vy))
-
-
-
-//     }
-
-//     draw = (p5) => {
-
-
-
-//         this.takeStep(p5)
-//         p5.clear()
-//         p5.smooth()
-
-//         for (particle of this.particles) {
-//             let transform = this.coordinateShift(p5, particle.current.x, particle.current.y, particle.current.z)
-//             p5.ellipse(transform[0], transform[1], 10, 10);
-//             //p5.text(particle.id, transform[0], transform[1])
-//             let s = 10
-//             let step = s / 25
-
-//             for (let t of particle.tail) {
-//                 let tr = this.coordinateShift(p5, t.x, t.y, t.z)
-//                 if (s > 1) {
-//                     s = s - step
-
-//                 }
-//                 p5.ellipse(tr[0], tr[1], s, s)
-//             }
-//         }
-//         p5.noStroke()
-//         //console.log(p5.frameRate())
-
-//         let t2 = this.coordinateShift(p5, 8.48, 8.48, 0)
-//         let t3 = this.coordinateShift(p5, -8.48, -8.48, 0)
-//         //p5.ellipse(t2[0], t2[1], 15, 15);
-//         //p5.ellipse(t3[0], t3[1], 15, 15);
-
-//         // NOTE: Do not use setState in the draw function or in functions that are executed
-//         // in the draw function...
-//         // please use normal variables or class properties for these purposes
-//     };
-
-//     takeStep = (p5) => {
-
-
-//         this.particles.map((x) => {
-//             //console.log(x.current.x, x.current.y)
-//             x.rk4Step(sigma, rho, beta, deltat);
-//             x.applyState();
-//         })
-//     }
-
-
-//     render() {
-
-//         return <Sketch setup={this.setup} draw={this.draw} />;
-
-//     }
-
-// }
-
-export default SSSS
+export default Lorenz

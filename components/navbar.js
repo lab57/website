@@ -6,7 +6,8 @@ export default function Navbar() {
         <div className={styles.container}>
             <Link href="/">Home</Link>
             <Link href="/CV.pdf">CV</Link>
-            <Link href="mailto: me@lucbarrett.info">Contact</Link>
+            <Link href="mailto: me@lucbarrett.info">Email</Link>
+            <Link href="/about">About</Link>
         </div>
         <div className={styles.divider}></div>
     </div>
@@ -17,7 +18,6 @@ export default function Navbar() {
  * 
  * 
  *             <Link href="/">Home</Link>
-
 <Link href="/research">Research</Link>
             <Link href="/Resume.pdf">Resume</Link>
             <Link href="/newPage">Projects</Link>
