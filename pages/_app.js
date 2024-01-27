@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import Head from 'next/head';
 //import Gravity from "../components/gravitysim"
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 const MathJax = dynamic(
     () => {
         return import("./mathjax");
@@ -38,6 +39,7 @@ export default function App({ Component, pageProps }) {
 
             </div>
             <Analytics />
+            <SpeedInsights />
         </div >
 
     );
