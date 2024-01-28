@@ -10,6 +10,8 @@
     "@react-three/fiber": "^8.13.4",
     "@vercel/analytics": "^1.1.2",
     "@vercel/speed-insights": "^1.0.8",
+    "better-react-mathjax": "^2.0.3",
+    "katex": "^0.16.9",
     "next": "latest",
     "p5": "^1.7.0",
     "react": "18.2.0",

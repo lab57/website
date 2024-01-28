@@ -1,6 +1,7 @@
 .navbar {
     min-width: 100%;
     height: 20px;
+
 }
 
 
@@ -8,6 +9,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* position: fixed;
+    top: 0; */
+
 }
 
 .container {
