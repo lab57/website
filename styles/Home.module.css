@@ -127,7 +127,9 @@
 }
 
 .mainAppContainer {
-  display: inline
+  display: inline;
+
+  /* Hide scrollbars */
 }
 
 
