@@ -8,7 +8,7 @@ const Sketch = dynamic(() => import('react-p5').then((mod) => mod.default), {
 
 
 
-const deltat = .0007
+const deltat = .001
 const maxTailLength = 500;
 let sigma = 10, rho = 28, beta = 8 / 3;//8 / 3;
 let coordinateShift = (p5, x, y, z) => {
@@ -59,17 +59,58 @@ class particle {
         };
     }
 
-    // RK4 solver step
+
+
+    // Lorenz system equations
+    modLorenzEquations(pe, sigma, rho, beta) {
+        //console.log(p)
+        let a = 10
+        let b = 8 / 3
+        let c = 8
+        let p = pe.current.x
+        let q = pe.current.y
+        let z = pe.current.z
+        return {
+            dx: (1 / 3) * (-(a + 1) * p + (a - c + z) * q) +
+                ((1 - a) * (p ** 2 - q ** 2) +
+                    2 * (a + c - z) * p * q) * 1 / (3 * Math.sqrt(p ** 2 + q ** 2)),
+            dy: (1 / 3) * ((c - a - z) * p - (a + 1) * q) +
+                (2 * (a - 1) * p * q + (a + c - z) * (p ** 2 - q ** 2)) * 1 / (3 * Math.sqrt(p ** 2 + q ** 2)),
+            dz: (1 / 2) * (3 * p ** 2 * q - q ** 3) - b * z
+        };
+    }
+
+
+
+    rossler(p, sigma, rho, beta) {
+        //console.log(p)
+        let x = p.current.x
+        let y = p.current.y
+        let z = p.current.z
+        let a = 0.2
+        let b = 0.2
+        let c = 5.7
+        return {
+            dx: -y - z,
+            dy: x + a * y,
+            dz: b + z * (x - c)
+        };
+    }
+
     rk4Step(sigma, rho, beta, dt) {
-        const k1 = this.lorenzEquations(this, sigma, rho, beta);
+
+        let f = this.rossler
+        f = this.lorenzEquations
+
+        const k1 = f(this, sigma, rho, beta);
         const p1 = { current: { x: this.current.x + k1.dx * dt / 2, y: this.current.y + k1.dy * dt / 2, z: this.current.z + k1.dz * dt / 2 } };
 
-        const k2 = this.lorenzEquations(p1, sigma, rho, beta);
+        const k2 = f(p1, sigma, rho, beta);
         const p2 = { current: { x: this.current.x + k2.dx * dt / 2, y: this.current.y + k2.dy * dt / 2, z: this.current.z + k2.dz * dt / 2 } };
 
-        const k3 = this.lorenzEquations(p2, sigma, rho, beta);
+        const k3 = f(p2, sigma, rho, beta);
         const p3 = { current: { x: this.current.x + k3.dx * dt, y: this.current.y + k3.dy * dt, z: this.current.z + k3.dz * dt } };
-        const k4 = this.lorenzEquations(p3, sigma, rho, beta);
+        const k4 = f(p3, sigma, rho, beta);
 
         this.next = {
             x: this.current.x + (dt / 6) * (k1.dx + 2 * k2.dx + 2 * k3.dx + k4.dx),
@@ -78,6 +119,10 @@ class particle {
         };
         //console.log(this.next)
     }
+
+
+
+
 }
 
 class Lorenz extends React.Component {
@@ -131,7 +176,7 @@ class Lorenz extends React.Component {
                 }
                 this.pg = p.createGraphics(p.windowWidth, p.windowHeight);
                 this.pg.noStroke();
-                p.frameRate(45)
+                p.frameRate(150)
                 p.fill(p.color("#C3C3E6"))
                 //p.tint(255, 50)
 
