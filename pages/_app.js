@@ -38,7 +38,6 @@ export default function App({ Component, pageProps }) {
                 <div className={styles2.topContent}>
                     <Navbar />
                     <Component {...pageProps} />
-
                 </div>
                 <Analytics />
                 <SpeedInsights />

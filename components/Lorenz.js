@@ -8,7 +8,7 @@ const Sketch = dynamic(() => import('react-p5').then((mod) => mod.default), {
 
 
 
-const deltat = .001
+const deltat = .0007
 const maxTailLength = 500;
 let sigma = 10, rho = 28, beta = 8 / 3;//8 / 3;
 let coordinateShift = (p5, x, y, z) => {
@@ -176,7 +176,7 @@ class Lorenz extends React.Component {
                 }
                 this.pg = p.createGraphics(p.windowWidth, p.windowHeight);
                 this.pg.noStroke();
-                p.frameRate(150)
+                p.frameRate(60)
                 p.fill(p.color("#C3C3E6"))
                 //p.tint(255, 50)
 
