@@ -13,6 +13,7 @@ export default function Home() {
                 <h1 className={styles.title}>
                     Luc Barrett
                 </h1>
+                <p className={styles.description}>M.S. Computer Science Student @ UMass Amherst</p>
                 <p className={styles.description}>B.S. Physics, B.S. Math, B.S. Computer Science</p>
                 {/* <p className={styles.description}>Currently Studying at UMass Amherst</p> */}
 

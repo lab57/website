@@ -1,5 +1,6 @@
 .container {
-    max-width: 60%;
+    max-width: 75%;
+    min-width: 75%;
     padding: 0 1rem;
     margin: 3rem auto 3rem;
     line-height: 2;

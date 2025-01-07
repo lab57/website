@@ -149,3 +149,12 @@
   flex-direction: column;
   max-height: 100vh;
 }
+
+.main h1 {
+  margin-bottom: 1.5rem;
+}
+
+.main p {
+  margin-bottom: .3rem;
+  /* line-height: 5rem; */
+}

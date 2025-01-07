@@ -28,7 +28,7 @@
 
 .container a {
     transition: text-decoration 400ms ease-in-out;
-    text-decoration: underline solid transparent;
+    /* text-decoration: underline solid transparent; */
     transition: all 200ms ease-in-out;
 }
 
@@ -36,7 +36,7 @@
 .container a:focus,
 .container a:active {
     /* text-decoration: underline solid var(--c3);*/
-    transform: scale(1.05)
+    transform: scale(1.15)
 }
 
 

@@ -8,7 +8,7 @@ const Sketch = dynamic(() => import('react-p5').then((mod) => mod.default), {
 
 
 
-const deltat = .0007
+let deltat = .0007
 const maxTailLength = 500;
 let sigma = 10, rho = 28, beta = 8 / 3;//8 / 3;
 let coordinateShift = (p5, x, y, z) => {
@@ -52,6 +52,7 @@ class particle {
     // Lorenz system equations
     lorenzEquations(p, sigma, rho, beta) {
         //console.log(p)
+        // console.log(p.mouseX)
         return {
             dx: sigma * (p.current.y - p.current.x),
             dy: p.current.x * (rho - p.current.z) - p.current.y,
@@ -143,13 +144,19 @@ class Lorenz extends React.Component {
             x: 100,
             y: 100
         }
+        this.currentRadius = 5  // Starting radius
+        this.targetRadius = 5 // Target radius
+        this.currentOpacity = 255  // p5.js uses 0-255 for opacity
+        this.targetOpacity = 255
+
+        this.currentTimeMultiplier = 1
     }
 
     takeStep = (p5) => {
 
         this.particles.map((x) => {
             //console.log(x.current.x, x.current.y)
-            x.rk4Step(sigma, rho, beta, deltat);
+            x.rk4Step(sigma, rho, beta, deltat * this.currentTimeMultiplier);
             x.applyState();
         })
     }
@@ -162,9 +169,9 @@ class Lorenz extends React.Component {
                 this.particles = [];
 
                 let topRight = coordinateShift(p5, p5.width / 2, p5.height / 2, 0)
-                let minR = 15//Math.sqrt(topRight[0] ** 2 + topRight[1] ** 2)
 
                 for (let i = 0; i < 25; i++) {
+                    let minR = 15 * (.2 + Math.random())//Math.sqrt(topRight[0] ** 2 + topRight[1] ** 2)
                     // this.particles.push(new particle(i, (Math.random() - .5) * 2 * 10, (Math.random() - .5) * 2 * 10, (Math.random() - .5) * 2 * 10,
                     //     (Math.random() - .5) * 2 * 5, (Math.random() - .5) * 2 * 5, (Math.random() - .5) * 2 * 5))
                     let theta = Math.random() * Math.PI * 2
@@ -195,7 +202,7 @@ class Lorenz extends React.Component {
                 console.log("click!")
                 let t = inverseShift(p, p.mouseX, p.mouseY)
                 let part = new particle(0, t[0] + Math.random() * .2, t[1] + Math.random() * .2, 0, 0, 0, 0);
-                this.particles.push(part)
+                // this.particles.push(part) //disabled for now
             }
 
             p.keyTyped = () => {
@@ -208,36 +215,53 @@ class Lorenz extends React.Component {
                 this.takeStep(p)
                 p.clear()
                 p.smooth()
-                let minR = 15//Math.sqrt(topRight[0] ** 2 + topRight[1] ** 2)
 
-                if (this.preDrawn.length != 0) {
-                    this.particles.push(this.preDrawn.pop())
+                // Update radius for main particles only
+                let diffRadius = (this.props.showEllipses ? 10 : 1) - this.currentRadius;
+                if (Math.abs(diffRadius) > 0.1) {
+                    this.currentRadius += diffRadius * 0.02;
                 }
+
+                // Update opacity
+                let targetOpacity = this.props.showEllipses ? 255 : 66;  // 178 is ~70% of 255
+                let diffOpacity = targetOpacity - this.currentOpacity;
+                if (Math.abs(diffOpacity) > 0.1) {
+                    this.currentOpacity += diffOpacity * 0.02;
+                }
+                //update time
+                let targetTimeMultiplier = this.props.showEllipses ? 1 : 1 / 2;
+                let diffTime = targetTimeMultiplier - this.currentTimeMultiplier;
+                if (Math.abs(diffTime) > 0.01) {
+                    this.currentTimeMultiplier += diffTime * 0.02;
+                }
+
+                // Set fill once with current opacity
 
                 for (let part of this.particles) {
                     let transform = coordinateShift(p, part.current.x, part.current.y, part.current.z)
-                    p.ellipse(transform[0], transform[1], 10, 10);
-                    //p5.text(part.id, transform[0], transform[1])
-                    let s = 10
-                    let step = s / 25
+
+                    // Main particle uses transitioning radius
+                    p.ellipse(transform[0], transform[1], this.currentRadius, this.currentRadius);
+                    p.fill(195, 195, 230, this.currentOpacity);
+
+                    let s = this.currentRadius  // Start from current radius
+                    let step = s / 25  // Keep gradual fade
+                    let small_s = 1
 
                     for (let t of part.tail) {
                         let tr = coordinateShift(p, t.x, t.y, t.z)
                         if (s > 1) {
                             s = s - step
-
+                            p.ellipse(tr[0], tr[1], s, s);
                         }
                         else {
-                            //this.pg.ellipse(tr[0], tr[1], s, s)
+                            p.ellipse(tr[0], tr[1], small_s, small_s);
                         }
-                        p.ellipse(tr[0], tr[1], s, s)
-
                     }
                 }
+
                 p.image(this.pg, 0, 0)
                 p.noStroke()
-
-
             }
 
 

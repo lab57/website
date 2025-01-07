@@ -6,6 +6,8 @@ import Head from 'next/head';
 //import Gravity from "../components/gravitysim"
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 
 
@@ -14,11 +16,27 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 // });
 import Lorenz from "../components/Lorenz"
 import { MathJaxContext } from "better-react-mathjax"
+
+const config = {
+
+    tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        packages: ['base', 'ams', 'esint']
+    },
+
+};
+
 export default function App({ Component, pageProps }) {
+    const router = useRouter();
+    const isHomePage = router.pathname === '/';
+    console.log("Is home page?", isHomePage);
+
+
 
     return (
         <div className={styles2.mainAppContainer}>
-            <MathJaxContext>
+            <MathJaxContext config={config} version={3}>
 
                 <Head>
                     <title>Luc Barrett</title>
@@ -31,7 +49,7 @@ export default function App({ Component, pageProps }) {
                         onload="renderMathInElement(document.body);"></script>
                 </Head>
                 <div className={styles2.backgroundContent}>
-                    <Lorenz className={styles2.background} />
+                    <Lorenz className={styles2.background} showEllipses={isHomePage} />
 
                 </div>
 
