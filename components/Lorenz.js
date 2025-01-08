@@ -223,7 +223,7 @@ class Lorenz extends React.Component {
                 }
 
                 // Update opacity
-                let targetOpacity = this.props.showEllipses ? 255 : 66;  // 178 is ~70% of 255
+                let targetOpacity = this.props.showEllipses ? 255 : 30;  // 178 is ~70% of 255
                 let diffOpacity = targetOpacity - this.currentOpacity;
                 if (Math.abs(diffOpacity) > 0.1) {
                     this.currentOpacity += diffOpacity * 0.02;

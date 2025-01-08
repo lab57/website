@@ -30,16 +30,18 @@
 }
 
 .date {
+    /* margin-top: -.8rem; */
     font-style: italic;
     font-size: 0.9rem;
 }
 
 .excerpt {
     font-size: 1.1rem;
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
 }
 
 .content {
+    margin-top: 2rem;
     line-height: 1.6;
 }
 
@@ -56,9 +58,10 @@
     padding-right: 1rem;
 }
 
-.content>h1:first-child {
+.content>h1 {
     margin-left: -1rem;
     margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 .content h2 {
@@ -100,4 +103,17 @@
 .content img {
     margin-top: 1rem;
     margin-bottom: 1rem
+}
+
+.content {
+    text-shadow: none;
+    text-align: justify;
+}
+
+.content a {
+    position: relative;
+    color: var(--c3);
+    text-decoration: underline;
+    text-shadow: none;
+    z-index: 2;
 }

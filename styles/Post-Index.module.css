@@ -1,4 +1,17 @@
-.postlist article {}
+.postlist {
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.postlist article {
+    transition: all 0.2s ease-in-out;
+}
+
+.postlist article:hover {
+    color: var(--c3);
+}
 
 .postHeading {
     display: flex;
@@ -6,6 +19,7 @@
     text-align: center;
     align-items: stretch;
     margin: 0;
+
 }
 
 .postIndex h1 {
@@ -16,7 +30,7 @@
 
 .postHeading h2 {
     line-height: 2;
-    margin: 0
+    margin: 0;
 }
 
 .postHeading h3 {

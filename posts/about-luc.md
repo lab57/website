@@ -1,0 +1,36 @@
+---
+title: "About"
+date: "2024-01-07"
+# excerpt: "Overview of how this website was written"
+---
+# About Luc
+Hi! <br />
+<br />
+
+I'm a recent graduate from the University of Massachusetts Amherst with degrees in Physics, Computer Science, and Applied Mathematics. Currently, I'm enrolled in the UMass MS Computer Science program as a Bay State Fellow, working on my master's project in the [Vardoyan Lab](https://people.cs.umass.edu/~gvardoyan/#home). During my undergraduate studies, I was involved with the MOLLER and nEXO collaborations in the [Pocar Lab](https://websites.umass.edu/pocar/?_gl=1%2A7znp8n%2A_gcl_au%2AMTI1MTgwNzQwNS4xNzM0Mzg0NTA2%2A_ga%2AMTgyOTY0MDkzNS4xNzM0Mzg0NTA2%2A_ga_21RLS0L7EB%2AMTczNjI4MjQ4My4zMi4xLjE3MzYyODI1NDIuMC4wLjA.) and [Kumar Lab](https://people.umass.edu/kkumar/). I also briefly worked on efficiently modeling gaussian quantum systems with the [Krastanov Lab](https://lab.krastanov.org). See my CV above for details on these projects. <br />
+<br />
+<!-- **I am actively seeking PhD positions in neutrino physics or quantum computing for the Fall of 2025.**  -->
+
+
+
+# About This Website
+
+This website is written using Next.JS, and hosted via Vercel. The background is a numerical simulation of the Lorenz system:
+
+
+$$ \begin{aligned}
+\dot{x} &= \sigma(y - x) \\\\
+\dot{y} &= x(\rho - z) - y \\\\
+\dot{z} &= x y - \beta z \\\\
+\end{aligned}
+$$  
+
+with the typical values of these parameters, 
+$$\rho =28, \space \sigma=10, \space \beta = \frac{8}{3} $$
+For these values, the Lorenz system has chaotic trajectories, around two strange attractors.
+
+The numerical calculations are done using the fourth order Runge-Kutta method, written in Javascript. These trajectories are are rendered using P5.js. The website is otherwise written in React and Next.JS.
+
+
+
+
