@@ -13,7 +13,7 @@ html,
 body {
 
   color: var(--c4);
-  text-shadow: 2px 2px 1px black;
+  /* text-shadow: 2px 2px 1px black; */
   padding: 0;
   margin: 0;
   font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,

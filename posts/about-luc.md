@@ -1,6 +1,6 @@
 ---
 title: "About"
-date: "2024-01-07"
+date: "2025-01-07"
 # excerpt: "Overview of how this website was written"
 ---
 # About Luc

@@ -16,9 +16,11 @@
 .postHeading {
     display: flex;
     justify-content: space-between;
+    /* justify-content: left; */
     text-align: center;
-    align-items: stretch;
+    align-items: baseline;
     margin: 0;
+    gap: 3rem;
 
 }
 
@@ -33,9 +35,11 @@
     margin: 0;
 }
 
-.postHeading h3 {
+.postHeading time {
     /* line-height: 1 */
-    margin: 0
+    /* margin: 0
+     */
+    font-style: italic;
 }
 
 

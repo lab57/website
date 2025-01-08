@@ -18,9 +18,9 @@ export default function BlogIndex({ posts }) {
                                     <h2 className="">
                                         {title}
                                     </h2>
-                                    <h2 className={styles.date}>
+                                    <time className={styles.date}>
                                         {new Date(date).toLocaleDateString()}
-                                    </h2>
+                                    </time>
                                 </div>
                                 {excerpt && (
                                     <p className={styles.excerpt}>{excerpt}</p>
