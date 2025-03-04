@@ -2,14 +2,18 @@
 
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    align-items: center;
+    width: 100%
+        /* gap: 2rem; */
 
 
 }
 
 .postlist article {
     transition: all 0.2s ease-in-out;
-
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    padding: 15px 00px;
 
 }
 
@@ -28,14 +32,22 @@
     /* margin-left: 20%;
     margin-right: 20%; */
     margin: auto;
-    width: 66%;
+    /* width: 66%; */
 
+}
+
+.postIndex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%
 }
 
 .postIndex h1 {
     width: 100%;
     text-align: center;
     font-size: 40px;
+    border-bottom: 1px solid var(--c4, #333);
 }
 
 .postHeading h2 {

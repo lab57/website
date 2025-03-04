@@ -7,7 +7,7 @@ import Head from 'next/head';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 
@@ -30,8 +30,25 @@ const config = {
 export default function App({ Component, pageProps }) {
     const router = useRouter();
     const isHomePage = router.pathname === '/';
-    console.log("Is home page?", isHomePage);
+    const [activeHomeSection, setActiveHomeSection] = useState(0);
+    // Listen for section changes from the home page
+    useEffect(() => {
+        const handleSectionChange = (event) => {
+            setActiveHomeSection(event.detail.section);
+        };
 
+        window.addEventListener('sectionChange', handleSectionChange);
+
+        return () => {
+            window.removeEventListener('sectionChange', handleSectionChange);
+        };
+    }, []);
+
+
+    // Determine if ellipses should be shown - only on homepage AND only in first section
+    const showEllipsesState = isHomePage && activeHomeSection === 0;
+
+    console.log("Is home page?", isHomePage, "Active section:", activeHomeSection, "Show ellipses:", showEllipsesState);
 
 
     return (
@@ -49,7 +66,7 @@ export default function App({ Component, pageProps }) {
                         onload="renderMathInElement(document.body);"></script>
                 </Head>
                 <div className={styles2.backgroundContent}>
-                    <Lorenz className={styles2.background} showEllipses={isHomePage} />
+                    <Lorenz className={styles2.background} showEllipses={showEllipsesState} />
 
                 </div>
 

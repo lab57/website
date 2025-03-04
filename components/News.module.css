@@ -1,0 +1,119 @@
+.newsContainer {
+    width: 100%;
+    margin: 1rem auto;
+    font-family: freight-sans-pro, sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    padding-left: 1rem;
+    padding-right: 1rem
+}
+
+.newsBox {
+    border: 0px solid var(--c4, #333);
+    border-radius: 10px;
+}
+
+.newsTitle {
+    margin: 0 0 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--c4, #333);
+    font-size: 1.5rem;
+    text-align: left;
+}
+
+.newsList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.newsItem {
+    padding: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.newsItem:last-child {
+    border-bottom: none;
+}
+
+.linkedItem {
+    cursor: pointer;
+}
+
+.linkedItem:hover .itemContainer {
+    transform: translateX(5px);
+}
+
+.itemContainer {
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+    padding: 0.5rem 0;
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.newsDate {
+    font-size: 0.85rem;
+    /* color: var(--c3, #666); */
+    min-width: 110px;
+    margin-right: 1rem;
+}
+
+.newsItemTitle {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.inlineLink {
+    color: var(--c3, #666);
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.inlineLink:hover {
+    color: var(--c4, #333);
+}
+
+.viewAllContainer {
+    /* margin-top: 1rem; */
+    text-align: right;
+    /* padding-top: 0.5rem; */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.viewAllLink {
+    font-size: 0.9rem;
+    color: var(--c3, #666);
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+    display: inline-block;
+}
+
+.viewAllLink:hover {
+    color: var(--c4, #333);
+    transform: translateX(5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .newsContainer {
+        padding: 0 0.5rem;
+    }
+
+    .newsBox {
+        padding: 1rem;
+    }
+
+    .itemContainer {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .newsDate {
+        margin-bottom: 0.25rem;
+        min-width: auto;
+    }
+}

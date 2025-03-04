@@ -1,7 +1,8 @@
 .article {
-    max-width: 1024px;
+    /* max-width: 1024px; */
     margin: 0 auto;
-    padding: 2rem 1rem;
+    /* padding: 2rem 1rem; */
+    backdrop-filter: blur(3px);
 }
 
 .header {
@@ -58,9 +59,10 @@
     padding-right: 1rem;
 }
 
+
 .content>h1 {
     margin-left: -1rem;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     margin-top: 1rem;
 }
 
@@ -116,4 +118,36 @@
     text-decoration: underline;
     text-shadow: none;
     z-index: 2;
+}
+
+.content ul {
+    list-style-type: disc;
+    margin-left: 1.5em;
+    /* or padding-left */
+}
+
+.content ol {
+    list-style-type: decimal;
+    margin-left: 1.5em;
+    margin-top: 1em;
+}
+
+.content pre {
+    max-width: 80%;
+    white-space: pre-wrap;
+    /* CSS 3 */
+    word-wrap: break-word;
+    /* Modern browsers */
+    overflow-wrap: break-word;
+    margin: auto;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    /* background-color: #282C34;    */
+}
+
+.content code {}
+
+.content p {
+    margin-top: 1em;
+    /* margin-bottom: 1em; */
 }

@@ -36,6 +36,7 @@ class particle {
     }
 
     applyState() {
+        // console.log("meow", window.scrollY)
         this.tail.unshift(this.prev)
         if (this.tail.length > maxTailLength) {
             this.tail.pop()
@@ -236,7 +237,7 @@ class Lorenz extends React.Component {
                 }
 
                 // Set fill once with current opacity
-
+                //(const [index, element] of foobar.entries())
                 for (let part of this.particles) {
                     let transform = coordinateShift(p, part.current.x, part.current.y, part.current.z)
 
@@ -248,8 +249,14 @@ class Lorenz extends React.Component {
                     let step = s / 25  // Keep gradual fade
                     let small_s = 1
 
+                    // let i = 0
+                    // let tail_opacity = this.currentOpacity
+                    // step = (this.currentOpacity / 200)
                     for (let t of part.tail) {
                         let tr = coordinateShift(p, t.x, t.y, t.z)
+
+
+
                         if (s > 1) {
                             s = s - step
                             p.ellipse(tr[0], tr[1], s, s);
@@ -257,6 +264,7 @@ class Lorenz extends React.Component {
                         else {
                             p.ellipse(tr[0], tr[1], small_s, small_s);
                         }
+                        // i += 1
                     }
                 }
 
