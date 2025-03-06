@@ -31,6 +31,8 @@ export default function App({ Component, pageProps }) {
     const router = useRouter();
     const isHomePage = router.pathname === '/';
     const [activeHomeSection, setActiveHomeSection] = useState(0);
+    const [shouldBlur, setShouldBlur] = useState(false);
+
     // Listen for section changes from the home page
     useEffect(() => {
         const handleSectionChange = (event) => {
@@ -43,6 +45,12 @@ export default function App({ Component, pageProps }) {
             window.removeEventListener('sectionChange', handleSectionChange);
         };
     }, []);
+
+    useEffect(() => {
+        const isPostPage = router.pathname.startsWith('/posts/');
+        setShouldBlur(isPostPage);
+    }, [router.pathname]);
+
 
 
     // Determine if ellipses should be shown - only on homepage AND only in first section
@@ -66,11 +74,12 @@ export default function App({ Component, pageProps }) {
                         onload="renderMathInElement(document.body);"></script>
                 </Head>
                 <div className={styles2.backgroundContent}>
+                    {/* <div className={`${styles2.backgroundContent} ${shouldBlur ? styles2.blurredBackground : ''}`}> */}
                     <Lorenz className={styles2.background} showEllipses={showEllipsesState} />
 
                 </div>
 
-                <div className={styles2.topContent}>
+                <div className={`${styles2.topContent} ${shouldBlur ? styles2.blurBackdrop : ''}`} >
                     <Navbar />
                     <Component {...pageProps} />
                 </div>

@@ -62,25 +62,34 @@ export default function Home() {
             <div className={styles.snapContainer} onScroll={handleScroll} ref={snapContainerRef}>
                 <section className={styles.snapSection} >
                     <main className={styles.main}>
-                        <h1 className={styles.title}>
-                            Luc Barrett
-                        </h1>
-                        {/* <p className={styles.description}>Ph.D. Student @ <b>Cornell University</b> <br /> College of Applied & Engineering Physics </p> */}
-                        {/** <p className={styles.description}><a href="https://people.cs.umass.edu/~gvardoyan/#home" target="_blank">Vardoyan Lab</a> @ UMass Amherst</p> **/}
-                        <p className={styles.description}>Ph.D. Student @ <b>Cornell University,</b>   </p>
-                        <p className={styles.description}>College of Applied & Engineering Physics</p>
-                        <p className={styles.description}></p>
+                        <div className={styles.textContent}>
 
-                        <p className={styles.description}><em>M.S. Computer Science</em></p>
-                        <p className={styles.description}><em>B.S. Physics, B.S. Math, B.S. Computer Science</em></p>
-                        {/** <p className={styles.description}>Currently Studying at UMass Amherst</p> **/}
-                        <h2 className={styles.findme}></h2>
+                            <h1 className={styles.title}>
+                                Luc Barrett
+                            </h1>
+                            {/* <p className={styles.description}>Ph.D. Student @ <b>Cornell University</b> <br /> College of Applied & Engineering Physics </p> */}
+                            {/** <p className={styles.description}><a href="https://people.cs.umass.edu/~gvardoyan/#home" target="_blank">Vardoyan Lab</a> @ UMass Amherst</p> **/}
+                            {/* <p className={styles.description}>Ph.D. Student @ <b>Cornell University,</b>   </p>
+                            <p className={styles.description}>College of Applied & Engineering Physics</p> */}
+                            <p className={styles.description}></p>
+
+                            <p className={styles.description}>M.S. Computer Science Student @ UMass Amherst</p>
+                            <p className={styles.description}><em>B.S. Physics, B.S. Math, B.S. Computer Science</em></p>
+                            {/** <p className={styles.description}>Currently Studying at UMass Amherst</p> **/}
+                            {/* <h2 className={styles.findme}></h2> */}
+                        </div>
                         <div className={styles.socials}>
                             <Link href="https://www.linkedin.com/in/luc-barrett/" rel="noopener noreferrer" target="_blank">
-                                <Image src="/images/linkedin.png" width={50} height={50} alt="Linkedin picture" />
+                                <Image src="/images/icons8-linkedin.svg" width={50} height={50} alt="Linkedin picture" />
                             </Link>
                             <Link href="https://www.instagram.com/luc.barrett57/" rel="noopener noreferrer" target="_blank">
-                                <Image src="/images/instagramalt.png" width={50} height={50} alt="Instagram picture" />
+                                <Image src="/images/icons8-instagram.svg" width={50} height={50} alt="Instagram picture" />
+                            </Link>
+                            <Link href="https://github.com/lab57" rel="noopener noreferrer" target="_blank">
+                                <Image src="/images/icons8-github.svg" width={50} height={50} alt="Github picture" />
+                            </Link>
+                            <Link href="https://bsky.app/profile/lucwarm.bsky.social" rel="noopener noreferrer" target="_blank">
+                                <Image src="/images/Bluesky_logo_(black).svg" width={50} height={50} alt="Bluesky picture" />
                             </Link>
                         </div>
 
@@ -100,15 +109,15 @@ export default function Home() {
                                 Hi! My name's Luc, thanks for checking out my site!
                             </p>
                             <p>
-                                I'm currently in my final semester of a M.S. Computer Science program at UMass Amherst,
-                                working on quantum communication in the Vardoyan Lab. In the fall I am moving to the Applied & Engineering Physics department at Cornell University to start
-                                my Ph.D. I'm broadly interested in quantum information, particle physics, cosmology, and machine learning, and I'm usually working on projects in these areas.
+                                I recently graduated from UMass Amherst with B.S. degrees in Physics, Mathematics, and Computer Science. Now, I'm in my final semester of a M.S. Computer Science program,
+                                working on applying recent reinforcement learning technologies to quantum communication problems in the Vardoyan Lab. In the fall I am moving to the Applied & Engineering Physics department at Cornell University to start
+                                my Ph.D. I'm broadly interested in quantum information, particle physics, cosmology, and machine learning, and I'm usually working on projects in these areas, or some intersection of them.
 
 
                             </p>
 
                             <p>
-                                This website is for hosting my <Link href="/posts">ramblings</Link>, projects, or anything else I want to share. You can shoot me an email above if want to connect!
+                                This website is for hosting my <Link href="/posts">ramblings</Link>, projects, or anything else I want to share. You can shoot me an email above if you'd like to connect!
 
 
                             </p>

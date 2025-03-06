@@ -13,6 +13,10 @@
   scrollbar-width: none;
 }
 
+
+
+
+
 .title a {
   color: #0070f3;
   text-decoration: none;
@@ -106,13 +110,25 @@
   min-width: 75%;
   height: 100%;
   padding-top: 4em;
+  padding-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .socials {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 10px;
+  align-items: center;
+  gap: 15px;
+  /* padding-bottom: 5em; */
+  /* padding-top: 3em */
+}
+
+.socials a {
+  display: flex;
+  justify-content: center;
 }
 
 .socials img {
@@ -120,8 +136,10 @@
 }
 
 .socials img:hover {
-  transform: scale(1.3);
+  transform: scale(1.2);
 }
+
+
 
 .background {
   width: 100vw;
@@ -152,12 +170,22 @@
   background-color: var(--c1);
 }
 
+
+
 .topContent {
   overflow: hidden;
   touch-action: none;
   display: flex;
   flex-direction: column;
   height: 100vh;
+
+  transition: backdrop-filter 1s ease-in-out;
+}
+
+.blurBackdrop {
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  /* For Safari support */
 }
 
 .main h1 {
@@ -185,6 +213,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  scrollbar-width: thin;
+  overflow-y: auto;
   /* backdrop-filter: blur(5px); */
 
 }
@@ -238,8 +268,8 @@
   /* transform: translateX(-50%); */
   z-index: 10;
   cursor: pointer;
-  padding-top: 2em;
-  padding-bottom: 2em;
+  padding-top: 0em;
+  padding-bottom: 0em;
 }
 
 /* Down arrow styling */
