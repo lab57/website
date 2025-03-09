@@ -14,7 +14,7 @@ import { useEffect, useState } from 'react';
 // const Gravity = dynamic(() => import("../components/Lorenz"), {
 //     ssr: false
 // });
-import Lorenz from "../components/Lorenz"
+import Lorenz from "../components/LorenzWebGL"
 import { MathJaxContext } from "better-react-mathjax"
 
 const config = {

@@ -8,22 +8,25 @@ const Sketch = dynamic(() => import('react-p5').then((mod) => mod.default), {
 
 
 
-let deltat = .0007
+let deltat = .0007 * 1.5
 const maxTailLength = 500;
 let sigma = 10, rho = 28, beta = 8 / 3;//8 / 3;
+let useWebGL = true
+
+
 let coordinateShift = (p5, x, y, z) => {
     let w = p5.windowWidth
     let h = p5.windowHeight
-    // return [(35 * x + w / 2), (h / 2 - 15 * y), z]
-    return [35 * x, 15 * y, z]
+    return useWebGL ? [35 * x, -15 * y, z] : [(35 * x + w / 2), (h / 2 - 15 * y), z]
+    // return 
 
 }
 
 let inverseShift = (p5, x, y) => {
     let w = p5.windowWidth
     let h = p5.windowHeight
-    // return [(x - w / 2) / 35, (+h / 2 - y) / 15, 0]
-    return [x / 35, y / 15, z]
+    return useWebGL ? [x / 35, -y / 15, 0] : [(x - w / 2) / 35, (+h / 2 - y) / 15, 0]
+    // return 
 
 }
 class particle {
@@ -168,8 +171,9 @@ class Lorenz extends React.Component {
         p5.disableFriendlyErrors = true
         this.sketch = new p5(p => {
             p.setup = () => {
-                p.createCanvas(p.windowWidth, p.windowHeight)
+                p.createCanvas(p.windowWidth, p.windowHeight, useWebGL ? p.WEBGL : p.P2D)
                     .parent(this.renderRef.current);
+                p.pixelDensity(2);
                 this.particles = [];
                 p.disableFriendlyErrors = true
                 let topRight = coordinateShift(p5, p5.width / 2, p5.height / 2, 0)
@@ -218,7 +222,8 @@ class Lorenz extends React.Component {
             p.draw = () => {
                 this.takeStep(p)
                 p.clear()
-                p.smooth()
+                // p.smooth()
+                // p.noSmooth()
 
 
                 // Update radius for main particles only
@@ -228,7 +233,7 @@ class Lorenz extends React.Component {
                 }
 
                 // Update opacity
-                let targetOpacity = this.props.showEllipses ? 255 : 30;  // 178 is ~70% of 255
+                let targetOpacity = this.props.showEllipses ? 255 : 60;  // 178 is ~70% of 255
                 let diffOpacity = targetOpacity - this.currentOpacity;
                 if (Math.abs(diffOpacity) > 0.1) {
                     this.currentOpacity += diffOpacity * 0.02;
@@ -242,38 +247,107 @@ class Lorenz extends React.Component {
 
                 // Set fill once with current opacity
                 //(const [index, element] of foobar.entries())
+                // for (let part of this.particles) {
+                //     let transform = coordinateShift(p, part.current.x, part.current.y, part.current.z)
+
+                //     // Main particle uses transitioning radius
+                //     p.ellipse(transform[0], transform[1], this.currentRadius, this.currentRadius);
+                //     p.fill(195, 195, 230, this.currentOpacity);
+
+                //     let s = this.currentRadius  // Start from current radius
+                //     let step = s / 25  // Keep gradual fade
+                //     let small_s = 1
+
+                //     // let i = 0
+                //     // let tail_opacity = this.currentOpacity
+                //     // step = (this.currentOpacity / 200)
+                //     for (let t of part.tail) {
+                //         let tr = coordinateShift(p, t.x, t.y, t.z)
+
+
+
+                //         if (s > 1) {
+                //             s = s - step
+                //             p.ellipse(tr[0], tr[1], s, s);
+                //         }
+                //         else {
+                //             p.ellipse(tr[0], tr[1], small_s, small_s);
+                //         }
+                //         // i += 1
+                //     }
+                // }
+                p.stroke(195, 195, 230, this.currentOpacity);
+                p.strokeWeight(this.currentRadius);
+                p.noFill();
+
+                p.beginShape(p.POINTS)
+
                 for (let part of this.particles) {
                     let transform = coordinateShift(p, part.current.x, part.current.y, part.current.z)
-
-                    // Main particle uses transitioning radius
-                    p.ellipse(transform[0], transform[1], this.currentRadius, this.currentRadius);
-                    p.fill(195, 195, 230, this.currentOpacity);
-
-                    let s = this.currentRadius  // Start from current radius
-                    let step = s / 25  // Keep gradual fade
-                    let small_s = 1
-
-                    // let i = 0
-                    // let tail_opacity = this.currentOpacity
-                    // step = (this.currentOpacity / 200)
-                    for (let t of part.tail) {
-                        let tr = coordinateShift(p, t.x, t.y, t.z)
+                    p.vertex(transform[0], transform[1], transform[2])
 
 
+                }
+                p.endShape();
 
-                        if (s > 1) {
-                            s = s - step
-                            p.ellipse(tr[0], tr[1], s, s);
-                        }
-                        else {
-                            p.ellipse(tr[0], tr[1], small_s, small_s);
-                        }
-                        // i += 1
+                // for (let s = 0; s <= 25; s++) {
+                //     p.strokeWeight(this.currentRadius - this.currentRadius * s / 25)
+
+                //     p.beginShape(p.POINTS)
+                //     for (let part of this.particles) {
+                //         for (let t of part.tail) {
+                //             let tr = coordinateShift(p, t.x, t.y, t.z)
+                //             p.vertex(tr[0], tr[1], tr[2])
+
+                //         }
+                //     }
+                //     p.endShape();
+
+                // }
+
+                let s = this.currentRadius  // Start from current radius
+                let step = s / 25  // Keep gradual fade
+                let small_s = 1
+                for (let i = 0; i < this.particles[0].tail.length && i < 25; i++) {
+                    p.beginShape(p.POINTS)
+                    for (let part of this.particles) {
+                        let tr = coordinateShift(p, part.tail[i].x, part.tail[i].y, part.tail[i].z)
+                        p.vertex(tr[0], tr[1], tr[2])
+                        // 
+                    }
+                    p.endShape()
+                    if (s > 1) {
+                        s = s - step
+                        p.strokeWeight(s);
+
+                    }
+                    else {
+                        p.strokeWeight(small_s);
+
+                    }
+
+
+                }
+
+                p.beginShape(p.POINTS)
+                for (let i = 25; i < this.particles[0].tail.length; i++) {
+                    for (let part of this.particles) {
+                        let tr = coordinateShift(p, part.tail[i].x, part.tail[i].y, part.tail[i].z)
+                        p.vertex(tr[0], tr[1], tr[2])
+
                     }
                 }
-                // p.text(p.frameRate(), 50, 50)
+                p.endShape()
+
+
+
+
+
+
                 p.image(this.pg, 0, 0)
                 p.noStroke()
+                console.log(p.frameRate())
+                p.text(p.frameRate(), 30, 30)
             }
 
 
