@@ -1,10 +1,12 @@
 ---
-title: "Applying to a Physics Ph.D."
-date: "2025-01-30"
-excerpt: ""
+title: "Applying to a STEM Ph.D. Program"
+date: "2025-03-19"
+excerpt: "My thoughts and advice on putting together a good Ph.D. application for physics or CS, along with the resources I found the most helpful"
 ---
 
 # Introduction
+
+[Note this post is somewhat under construction]
 
 Applying to a PhD is a difficult process, and a complete source of good advice is hard to come by. I've decided to compile and share all the advice and resources that I have found helpful when I worked on my applications. This content will most strongly apply for physics applicants, but can likely be generalized to other STEM fields.
 
@@ -179,9 +181,9 @@ In the event that they don't submit on time, there's still no need to stress. Th
 
 | Resources|
 |----------------|
-| - [Article from MIT EECS admits, **with annotated examples**](https://mitcommlab.mit.edu/eecs/commkit/graduate-school-personal-statement/) <br> -  (TODO, example) My submitted SOP   |
+| - [Article from MIT EECS admits, **with annotated examples**](https://mitcommlab.mit.edu/eecs/commkit/graduate-school-personal-statement/) <br> -  [My submitted SOP for Cornell](https://lucbarrett.info/SOP_Cornell.pdf)   |
 
-The statement of purpose is a key part of your application. It's function is to tie together every other part of your application, and highlight why this collection of letters, grades, awards, etc means you're ready to be a grad student, and why you want to be a grad student at that institution. Typically, there is either a two page or 1000-word limit. To make customizing it easier, I would keep to both of these.
+The statement of purpose is a key part of your application. Its function is to tie together every other part of your application, and highlight why this collection of letters, grades, awards, etc means you're ready to be a grad student, and why you want to be a grad student at that institution. Typically, there is either a two page or 1000-word limit. To make customizing it easier, I would keep to both of these.
 
 ## General Tips
 **Be concise**. You have a lot of content to convey in two pages. **Every word in your statement should be contributing to your overall goal**. 

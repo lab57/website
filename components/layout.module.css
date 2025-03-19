@@ -2,11 +2,19 @@
     max-width: 75%;
     min-width: 75%;
     padding: 0 1rem;
-    margin: 3rem auto 3rem;
+    margin: 2rem auto 2rem;
     line-height: 2;
     overflow-y: scroll;
     max-height: 100%;
 
+
+}
+
+@media (max-aspect-ratio: 1/1) {
+    .container {
+        min-width: 95%;
+        max-width: 95%;
+    }
 }
 
 .container::-webkit-scrollbar {

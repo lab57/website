@@ -9,7 +9,7 @@ export default function BlogIndex({ posts }) {
     return (
         <Layout>
             <div className={styles.postIndex}>
-                <h1 className="">Blog Posts (Coming Soon)</h1>
+                <h1 className="">Blog Posts</h1>
                 <div className={styles.postlist}>
                     {posts.map(({ slug, title, date, excerpt }) => (
                         <article key={slug} className={styles.article}>

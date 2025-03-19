@@ -24,8 +24,9 @@ export default function Post({ postData }) {
                             })}
                         </time>
                     </div>
+
                     {postData.excerpt && (
-                        <p className={styles.excerpt}>{postData.excerpt}</p>
+                        <em><p className={styles.excerpt}>{postData.excerpt}</p></em>
                     )}
                     <div
                         className={styles.content}

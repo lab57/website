@@ -199,11 +199,16 @@ class Lorenz extends React.Component {
             }
 
             p.windowResized = () => {
+                // let oldpg = this.pg
+                // let n = p.createGraphics(p.windowWidth, p.windowHeight);
+                // n.image(this.pg, 0, 0, n.width, n.height)
+                // n.noStroke();
+                // this.pg = n
+                // oldpg.remove();
                 p.resizeCanvas(p.windowWidth, p.windowHeight)
-                let n = p.createGraphics(p.windowWidth, p.windowHeight);
-                n.image(this.pg, 0, 0, n.width, n.height)
-                n.noStroke();
-                this.pg = n
+                this.pg.resizeCanvas(p.windowWidth, p.windowHeight)
+                this.pg.noStroke();
+
             }
 
             p.mouseClicked = () => {
@@ -346,7 +351,7 @@ class Lorenz extends React.Component {
 
                 p.image(this.pg, 0, 0)
                 p.noStroke()
-                console.log(p.frameRate())
+                // console.log(p.frameRate())
                 p.text(p.frameRate(), 30, 30)
             }
 

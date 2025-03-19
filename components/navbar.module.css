@@ -26,6 +26,25 @@
 
 }
 
+.divider {
+    height: 2px;
+    width: 75%;
+    background: white;
+    align-items: center;
+    border-radius: 5px
+}
+
+@media (max-aspect-ratio: 1/1) {
+    .container {
+        width: 95%;
+
+    }
+
+    .divider {
+        width: 95%
+    }
+}
+
 .container a {
     transition: text-decoration 200ms ease-in-out;
     /* text-decoration: underline solid transparent; */
@@ -40,14 +59,4 @@
      */
     color: var(--c3);
     /* transition: 0.2s ease 0s */
-}
-
-
-
-.divider {
-    height: 2px;
-    width: 75%;
-    background: white;
-    align-items: center;
-    border-radius: 5px
 }
