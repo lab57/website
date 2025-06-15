@@ -67,14 +67,14 @@ export default function Home() {
                             <h1 className={styles.title}>
                                 Luc Barrett
                             </h1>
-                            {/* <p className={styles.description}>Ph.D. Student @ <b>Cornell University</b> <br /> College of Applied & Engineering Physics </p> */}
+                            <p className={styles.description}>Ph.D. Student @ <b>Cornell University</b> </p>
                             {/** <p className={styles.description}><a href="https://people.cs.umass.edu/~gvardoyan/#home" target="_blank">Vardoyan Lab</a> @ UMass Amherst</p> **/}
                             {/* <p className={styles.description}>Ph.D. Student @ <b>Cornell University,</b>   </p>
                             <p className={styles.description}>College of Applied & Engineering Physics</p> */}
                             <p className={styles.description}></p>
 
-                            <p className={styles.description}>M.S. Computer Science Student @ UMass Amherst</p>
-                            <p className={styles.description}><em>B.S. Physics, B.S. Math, B.S. Computer Science</em></p>
+                            {/* <p className={styles.description}><em>M.S. Computer Science</em> </p> */}
+                            <p className={styles.description}><em>B.S. Physics, B.S. Math, M.S./B.S. Computer Science</em></p>
                             {/** <p className={styles.description}>Currently Studying at UMass Amherst</p> **/}
                             {/* <h2 className={styles.findme}></h2> */}
                         </div>
@@ -109,9 +109,10 @@ export default function Home() {
                                 Hi! My name's Luc, thanks for checking out my site!
                             </p>
                             <p>
-                                I recently graduated from UMass Amherst with B.S. degrees in Physics, Mathematics, and Computer Science. Now, I'm in my final semester of a M.S. Computer Science program,
-                                working on applying recent reinforcement learning technologies to quantum communication problems in the Vardoyan Lab. In the fall I am moving to the Applied & Engineering Physics department at Cornell University to start
-                                my Ph.D. I'm broadly interested in quantum information, particle physics, cosmology, and machine learning, and I'm usually working on projects in these areas, or some intersection of them.
+                                I recently graduated from UMass Amherst with an M.S. degree in Computer Science, and B.S. degrees in Physics, Mathematics, and Computer Science. In the fall, I'm moving to Cornell University to start my Ph.D. in
+                                the College of Applied & Engineering Physics, focusing on quantum information. During my masters, I focused on studying applications of modern reinforcement learning techniques to problems in quantum communication
+                                (e.g, circuit compilation, memory entanglement generation). During my undergraduate programs, I focused on nuclear physics, mostly neutrinoless double beta decay, where my thesis was on R&D for the nEXO experiment
+                                I also had some side projects working on simulators for guassian quantum systems. I'm broadly interested in quantum information, particle physics, cosmology, and machine learning, and I'm usually working on projects in these areas, or some intersection of them.
 
 
                             </p>
