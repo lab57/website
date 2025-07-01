@@ -1,3 +1,4 @@
+--only-binary=:all:
 Flask
 Flask-Cors
 PyMuPDF
