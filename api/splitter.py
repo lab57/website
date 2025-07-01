@@ -65,8 +65,9 @@ def split_billing_pdf(source_pdf_bytes, output_folder):
             full_name = client_match.group(1).strip()
             client_names_found.append(full_name)  # Add the full name to our list
             # Sanitize the name for the filename.
-            last_name = full_name.split()[-1]
-            safe_name = re.sub(r'[\t\n\r\f\v\\/*?:"<>|]', "", last_name).strip()
+
+            name = full_name.replace(" ", "_")
+            safe_name = re.sub(r'[\t\n\r\f\v\\/*?:"<>|]', "", name).strip()
 
             month_name, year = "UnknownMonth", "UnknownYear"
             date_match = date_pattern.search(text)
@@ -101,7 +102,7 @@ def split_billing_pdf(source_pdf_bytes, output_folder):
         client_doc = pymupdf.open()
         client_doc.insert_pdf(source_doc, from_page=start_page, to_page=end_page)
 
-        output_filename = f"{client['name']}{client['month']}{client['year']}.pdf"
+        output_filename = f"{client['name']}_{client['month']}_{client['year']}.pdf"
         output_path = os.path.join(output_folder, output_filename)
 
         client_doc.save(output_path)
