@@ -1,14 +1,12 @@
-from http.server import BaseHTTPRequestHandler
+from flask import Flask, request, send_file, make_response
 from werkzeug.datastructures import FileStorage
-from werkzeug.formparser import parse_form_data
 import io
 import zipfile
 import re
 import pymupdf  # PyMuPDF
 
 
-# --- Your PDF Splitting Logic ---
-# This is the same core logic, but now as a standard Python function.
+# --- Your PDF Splitting Logic (remains the same) ---
 def create_split_pdfs(pdf_stream):
     output_files = []
     client_pattern = re.compile(r"Client:\s*(.+)")
@@ -34,7 +32,6 @@ def create_split_pdfs(pdf_stream):
         return []
 
     client_pages = []
-    # ... (The logic to find client_pages is identical to the previous script) ...
     for page_num, page in enumerate(source_doc):
         text = page.get_text("text")
         client_match = client_pattern.search(text)
@@ -82,61 +79,47 @@ def create_split_pdfs(pdf_stream):
     return output_files
 
 
-class handler(BaseHTTPRequestHandler):
+# --- Flask Application ---
+app = Flask(__name__)
 
-    def _send_cors_headers(self):
-        """Sends headers to handle CORS requests."""
-        self.send_header("Access-Control-Allow-Origin", "*")
-        self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type")
 
-    def do_OPTIONS(self):
-        """Responds to the browser's pre-flight OPTIONS request."""
-        self.send_response(204)  # 204 No Content
-        self._send_cors_headers()
-        self.end_headers()
+@app.route("/api/splitter", methods=["POST", "OPTIONS"])
+def handle_split():
+    if request.method == "OPTIONS":
+        # Pre-flight request. Reply successfully:
+        response = make_response()
+        response.headers.add("Access-Control-Allow-Origin", "*")
+        response.headers.add("Access-Control-Allow-Headers", "Content-Type")
+        response.headers.add("Access-Control-Allow-Methods", "POST")
+        return response
 
-    def do_POST(self):
-        # 1. Parse the uploaded file
-        environ = {
-            "REQUEST_METHOD": "POST",
-            "CONTENT_TYPE": self.headers["Content-Type"],
-            "CONTENT_LENGTH": self.headers["Content-Length"],
-        }
-        _, form, files = parse_form_data(environ, self.rfile)
-        uploaded_file = files.get("file")
+    if "file" not in request.files:
+        return "No file uploaded.", 400
 
-        if not isinstance(uploaded_file, FileStorage):
-            self.send_response(400)
-            self.end_headers()
-            self.wfile.write(b"No file uploaded.")
-            return
+    uploaded_file = request.files["file"]
 
-        # 2. Process the PDF
-        split_pdfs = create_split_pdfs(uploaded_file.stream)
+    split_pdfs = create_split_pdfs(uploaded_file.stream)
 
-        if not split_pdfs:
-            self.send_response(400)
-            # Add CORS headers even for error responses
-            self._send_cors_headers()
-            self.end_headers()
-            self.wfile.write(b"Could not find client statements in PDF.")
-            return
+    if not split_pdfs:
+        return "Could not find client statements in PDF.", 400
 
-        # 3. Create a zip file in memory
-        memory_file = io.BytesIO()
-        with zipfile.ZipFile(memory_file, "w", zipfile.ZIP_DEFLATED) as zf:
-            for pdf in split_pdfs:
-                zf.writestr(pdf["name"], pdf["data"])
-        memory_file.seek(0)
+    memory_file = io.BytesIO()
+    with zipfile.ZipFile(memory_file, "w", zipfile.ZIP_DEFLATED) as zf:
+        for pdf in split_pdfs:
+            zf.writestr(pdf["name"], pdf["data"])
+    memory_file.seek(0)
 
-        # 4. Send the successful response
-        self.send_response(200)
-        self.send_header("Content-Type", "application/zip")
-        self.send_header(
-            "Content-Disposition", 'attachment; filename="split_results.zip"'
-        )
-        self._send_cors_headers()  # Add CORS headers to the actual response
-        self.end_headers()
-        self.wfile.write(memory_file.getvalue())
-        return
+    response = send_file(
+        memory_file,
+        mimetype="application/zip",
+        as_attachment=True,
+        download_name="split_results.zip",
+    )
+    # Add CORS header to the actual response
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
+
+
+# This part is optional for Vercel, but good practice for local testing
+if __name__ == "__main__":
+    app.run(debug=True)
