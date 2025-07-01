@@ -82,11 +82,22 @@ def create_split_pdfs(pdf_stream):
     return output_files
 
 
-# --- The Vercel Serverless Handler ---
 class handler(BaseHTTPRequestHandler):
 
+    def _send_cors_headers(self):
+        """Sends headers to handle CORS requests."""
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+
+    def do_OPTIONS(self):
+        """Responds to the browser's pre-flight OPTIONS request."""
+        self.send_response(204)  # 204 No Content
+        self._send_cors_headers()
+        self.end_headers()
+
     def do_POST(self):
-        # 1. Parse the uploaded file from the form data
+        # 1. Parse the uploaded file
         environ = {
             "REQUEST_METHOD": "POST",
             "CONTENT_TYPE": self.headers["Content-Type"],
@@ -101,11 +112,13 @@ class handler(BaseHTTPRequestHandler):
             self.wfile.write(b"No file uploaded.")
             return
 
-        # 2. Call the processing function with the file stream
+        # 2. Process the PDF
         split_pdfs = create_split_pdfs(uploaded_file.stream)
 
         if not split_pdfs:
             self.send_response(400)
+            # Add CORS headers even for error responses
+            self._send_cors_headers()
             self.end_headers()
             self.wfile.write(b"Could not find client statements in PDF.")
             return
@@ -117,12 +130,13 @@ class handler(BaseHTTPRequestHandler):
                 zf.writestr(pdf["name"], pdf["data"])
         memory_file.seek(0)
 
-        # 4. Send the successful response with the zip file
+        # 4. Send the successful response
         self.send_response(200)
         self.send_header("Content-Type", "application/zip")
         self.send_header(
             "Content-Disposition", 'attachment; filename="split_results.zip"'
         )
+        self._send_cors_headers()  # Add CORS headers to the actual response
         self.end_headers()
         self.wfile.write(memory_file.getvalue())
         return
