@@ -8,6 +8,7 @@ export default function Navbar() {
             <Link href="/posts">Posts</Link>
             <Link href="/CV.pdf">CV</Link>
             <Link href="mailto: me@lucbarrett.info">Email</Link>
+            {/* <Link href="https://forms.gle/68gvCWNJbEEvsPBZ9" target="_blank">Tutoring</Link> */}
 
         </div>
         <div className={styles.divider}></div>

@@ -141,10 +141,11 @@ class Lorenz extends React.Component {
     tstep;
     pg;
     pCount = 0;
-    constructor() {
+    constructor(props) {
         console.log("aaa")
-        super()
+        super(props)
         this.renderRef = React.createRef()
+        this.pauseTimer = null;
         this.preDrawn = []
         this.state = {
             x: 100,
@@ -156,6 +157,19 @@ class Lorenz extends React.Component {
         this.targetOpacity = 255
 
         this.currentTimeMultiplier = 1
+
+        if (props.showEllipses) {
+            // Start in the large, solid state for /posts/ pages
+            this.currentRadius = 10;
+            this.currentOpacity = 255;
+            this.currentTimeMultiplier = 1;
+        } else {
+            // Start in the small, faded ("blurred/smaller") state for all other pages
+
+            this.currentRadius = 1.0991817673968996;
+            this.currentOpacity = 60 / 255;
+            this.currentTimeMultiplier = 0.5099272438221838;
+        }
     }
 
     takeStep = (p5) => {
@@ -165,6 +179,38 @@ class Lorenz extends React.Component {
             x.rk4Step(sigma, rho, beta, deltat * this.currentTimeMultiplier);
             x.applyState();
         })
+    }
+    componentDidUpdate(prevProps) {
+
+        if (!this.sketch) {
+            return;
+        }
+
+        // Only run this logic if the isPaused prop has actually changed
+        if (prevProps.isPaused !== this.props.isPaused) {
+            if (this.props.isPaused) {
+                // --- PAUSE LOGIC ---
+                // When isPaused becomes true, set a 5-second (5000ms) timer.
+                // After 5 seconds, the noLoop() function will be called.
+                this.pauseTimer = setTimeout(() => {
+                    console.log("Animation paused after 5 seconds.");
+                    this.sketch.noLoop();
+                }, 0);
+
+            } else {
+                // --- UNPAUSE LOGIC ---
+                // If isPaused becomes false, we must cancel the pending pause timer.
+                // This prevents the animation from stopping if the user un-pauses
+                // within the 5-second window.
+                if (this.pauseTimer) {
+                    clearTimeout(this.pauseTimer);
+                }
+
+                // Immediately restart the animation loop.
+                this.sketch.loop();
+            }
+        }
+
     }
     componentDidMount() {
         const p5 = require("p5")
@@ -245,10 +291,28 @@ class Lorenz extends React.Component {
                 }
                 //update time
                 let targetTimeMultiplier = this.props.showEllipses ? 1 : 1 / 2;
+                // let targetTimeMultiplier = this.props.isPaused ? 0.005 : (this.props.showEllipses ? 1 : 1 / 2);
+
+
+
                 let diffTime = targetTimeMultiplier - this.currentTimeMultiplier;
                 if (Math.abs(diffTime) > 0.01) {
                     this.currentTimeMultiplier += diffTime * 0.02;
                 }
+
+                console.log(this.currentRadius, this.currentOpacity, this.currentTimeMultiplier)
+
+                // if (Math.abs(this.currentTimeMultiplier) < 0.01) {
+                //     // this.currentTimeMultiplier = 0;
+                //     // this.sketch.noLoop()
+                //     // p.frameRate(1)
+
+                // } else if (Math.abs(diffTime) > 0.01) {
+                //     // this.sketch.loop()
+                //     // p.frameRate(60)
+
+                //     this.currentTimeMultiplier += diffTime * 0.02;
+                // }
 
                 // Set fill once with current opacity
                 //(const [index, element] of foobar.entries())

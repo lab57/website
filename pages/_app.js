@@ -75,7 +75,8 @@ export default function App({ Component, pageProps }) {
                 </Head>
                 <div className={styles2.backgroundContent}>
                     {/* <div className={`${styles2.backgroundContent} ${shouldBlur ? styles2.blurredBackground : ''}`}> */}
-                    <Lorenz className={styles2.background} showEllipses={showEllipsesState} />
+                    <Lorenz className={styles2.background} showEllipses={showEllipsesState} isPaused={shouldBlur} />
+
 
                 </div>
 
