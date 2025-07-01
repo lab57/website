@@ -6,9 +6,12 @@ export default function HomePage() {
     const [file, setFile] = useState(null);
     const [uploading, setUploading] = useState(false);
     const [error, setError] = useState(null);
+    // New state to hold the list of client names found
+    const [foundClients, setFoundClients] = useState([]);
 
     const handleFileChange = (e) => {
         setError(null);
+        setFoundClients([]); // Reset clients list on new file selection
         setFile(e.target.files[0]);
     };
 
@@ -21,6 +24,7 @@ export default function HomePage() {
 
         setUploading(true);
         setError(null);
+        setFoundClients([]); // Reset clients list before new submission
 
         const formData = new FormData();
         formData.append('file', file);
@@ -33,9 +37,16 @@ export default function HomePage() {
             });
 
             if (!response.ok) {
-                // Try to get a more specific error from the backend
                 const errText = await response.text();
                 throw new Error(errText || 'Failed to split the PDF.');
+            }
+
+            // Read the custom header containing client names
+            const clientNamesHeader = response.headers.get('X-Client-Names');
+            if (clientNamesHeader) {
+                // Decode the names and split them into an array
+                const decodedNames = clientNamesHeader.split(',').map(name => decodeURIComponent(name));
+                setFoundClients(decodedNames);
             }
 
             // Handle the successful download of the zip file
@@ -52,6 +63,7 @@ export default function HomePage() {
 
         } catch (err) {
             setError(err.message);
+            setFoundClients([]); // Clear clients on error
         } finally {
             setUploading(false);
         }
@@ -59,18 +71,15 @@ export default function HomePage() {
 
     return (
         <Layout>
-
             <div className={styles.container}>
                 <main className={styles.main}>
                     <div>
                         <h1 className={styles.title}>
                             📄 PDF Statement Splitter
                         </h1>
-
                         <p className={styles.description}>
                             Upload a single PDF to split it into separate files for each client.
                         </p>
-
                     </div>
 
                     <form onSubmit={handleSubmit} className={styles.form}>
@@ -86,9 +95,20 @@ export default function HomePage() {
                     </form>
 
                     {error && <p className={styles.error}>{error}</p>}
+
+                    {/* New section to display the list of found clients */}
+                    {foundClients.length > 0 && (
+                        <div className={styles.results}>
+                            <h3>Successfully Processed {foundClients.length} Clients:</h3>
+                            <ul>
+                                {foundClients.map((name, index) => (
+                                    <li key={index}>{name}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
                 </main>
             </div>
         </Layout>
-
     );
 }
