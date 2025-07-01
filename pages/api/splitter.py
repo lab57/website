@@ -83,7 +83,7 @@ def create_split_pdfs(pdf_stream):
 app = Flask(__name__)
 
 
-@app.route("/api/splitter", methods=["POST", "OPTIONS"])
+@app.route("/", methods=["POST", "OPTIONS"])
 def handle_split():
     if request.method == "OPTIONS":
         # Pre-flight request. Reply successfully:
