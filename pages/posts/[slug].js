@@ -34,7 +34,7 @@ export default function Post({ postData }) {
                     />
                 </article>
             </MathJax>
-        </Layout>
+        </Layout >
     )
 }
 

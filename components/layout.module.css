@@ -4,8 +4,8 @@
     padding: 0 1rem;
     margin: 2rem auto 2rem;
     line-height: 2;
-    overflow-y: scroll;
-    max-height: 100%;
+    /* overflow-y: scroll; */
+    /* max-height: 100%; */
 
 
 }

@@ -81,7 +81,7 @@ export default function App({ Component, pageProps }) {
                 </div>
 
                 <div className={`${styles2.topContent} ${shouldBlur ? styles2.blurBackdrop : ''}`} >
-                    <Navbar />
+                    <Navbar className={styles2.nbar} />
                     <Component {...pageProps} />
                 </div>
                 <Analytics />

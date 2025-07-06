@@ -54,3 +54,64 @@ button {
   padding: 0.5rem 1rem;
   font-weight: bold;
 }
+
+/*
+  New styles for the split, sticky layout
+*/
+
+/* 1. This container holds all your new sections */
+.article-body {
+  line-height: 1.6;
+  /* You can move global styles like line-height here */
+}
+
+/* 2. Each section is a flex container to create the two columns */
+.split-section {
+  display: flex;
+  /* Aligns the top of the columns, crucial for sticky positioning */
+  /* align-items: flex-start; */
+  align-items: stretch;
+  gap: 2rem;
+  /* Adjust the space between the two columns */
+  margin-top: 2rem;
+}
+
+/* 3. The left column (1/3 width) for the header */
+.left-column {
+  flex: 1;
+  /* background-color: red; */
+  /* This is shorthand for flex-grow: 1, flex-shrink: 1, flex-basis: 0% */
+  /* A more explicit way is to use flex-basis */
+  /* flex-basis: 33.33%; */
+  /* height: 20vh */
+}
+
+/* 4. The magic! Make the H1 sticky within the left column */
+.left-column h1 {
+  position: sticky;
+  align-self: baseline;
+  top: 2rem;
+  /* The distance from the top of the viewport when it sticks */
+
+  /* These styles override your original .content > h1 styles */
+  margin-left: 0;
+  line-height: 1.3;
+  font-size: 2rem;
+  font-weight: bold;
+  /* color: red; */
+  text-justify: inter-character;
+  text-align: right;
+  align-self: flex-start
+}
+
+/* 5. The right column (2/3 width) for the main content */
+.right-column {
+  flex: 3;
+  /* Takes up twice the space of the left column */
+  /* flex-basis: 66.67%; */
+  min-width: 0;
+  /* A flexbox trick to prevent content from overflowing its container */
+  display: flex;
+  flex-direction: column;
+  gap: 1em
+}
