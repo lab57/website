@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from './navbar.module.css';
 
-export default function Navbar() {
+export default function Navbar({ scrollProgress = 0, showProgress = false }) {
     return <div className={styles.outer}>
         <div className={styles.container}>
             <Link href="/">Home</Link>
@@ -11,7 +11,16 @@ export default function Navbar() {
             {/* <Link href="https://forms.gle/68gvCWNJbEEvsPBZ9" target="_blank">Tutoring</Link> */}
 
         </div>
-        <div className={styles.divider}></div>
+        <div className={styles.divider}>
+            {showProgress && (
+                <div
+                    className={styles.progressFill}
+                    style={{ width: `${scrollProgress * 100}%` }}
+                />
+            )}
+
+
+        </div>
     </div>
 
 }

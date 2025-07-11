@@ -5,10 +5,14 @@ import matter from 'gray-matter'
 import path from 'node:path'
 import { MathJax } from "better-react-mathjax"
 import styles from '../../styles/Post.module.css'
+import { useScrollProgress } from '../../hooks/useScrollProgress'; // ADD THIS IMPORT
+
 
 const postsDirectory = path.join(process.cwd(), 'posts')
 
 export default function Post({ postData }) {
+    const containerRef = useScrollProgress(); // ADD THIS LINE
+
     return (
         <Layout>
 

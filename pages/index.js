@@ -33,6 +33,8 @@ const newsItems = [
 
 export default function Home() {
     const [activeSection, setActiveSection] = useState(0);
+    const [chevronOpacity, setChevronOpacity] = useState(1); // Add this line
+
     const snapContainerRef = useRef(null);
 
     // Handle scroll events to detect active section
@@ -44,6 +46,12 @@ export default function Home() {
         const sectionHeight = container.clientHeight;
         // If scrolled more than half of the first section, we're in section 2
         const newActiveSection = scrollPosition >= sectionHeight / 2 ? 1 : 0;
+
+
+        const fadeDistance = 250; // Pixels to fade over
+        const newOpacity = Math.max(0, 1 - (scrollPosition / fadeDistance));
+        setChevronOpacity(newOpacity);
+
 
         if (newActiveSection !== activeSection) {
             setActiveSection(newActiveSection);
@@ -94,7 +102,7 @@ export default function Home() {
                         </div>
 
                     </main>
-                    <div className={styles.scrollIndicator}>
+                    <div className={styles.scrollIndicator} style={{ opacity: chevronOpacity }}>
                         <div className={styles.arrowDown}></div>
                     </div>
                 </section>

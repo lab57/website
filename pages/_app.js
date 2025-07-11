@@ -15,6 +15,8 @@ import { useEffect, useState } from 'react';
 //     ssr: false
 // });
 import Lorenz from "../components/LorenzWebGL"
+// import Lorenz from "../components/LorenzEE"
+
 import { MathJaxContext } from "better-react-mathjax"
 
 const config = {
@@ -30,21 +32,38 @@ const config = {
 export default function App({ Component, pageProps }) {
     const router = useRouter();
     const isHomePage = router.pathname === '/';
+    const isPostsPage = router.pathname.startsWith('/posts'); // ADD THIS LINE
+
     const [activeHomeSection, setActiveHomeSection] = useState(0);
     const [shouldBlur, setShouldBlur] = useState(false);
+    const [scrollProgress, setScrollProgress] = useState(0); // ADD THIS LINE
+
 
     // Listen for section changes from the home page
     useEffect(() => {
         const handleSectionChange = (event) => {
             setActiveHomeSection(event.detail.section);
         };
+        const handleScrollProgress = (event) => {
+            setScrollProgress(event.detail.progress);
+        };
 
         window.addEventListener('sectionChange', handleSectionChange);
+        window.addEventListener('scrollProgress', handleScrollProgress); // ADD THIS LINE
+
 
         return () => {
             window.removeEventListener('sectionChange', handleSectionChange);
+            window.removeEventListener('scrollProgress', handleScrollProgress); // ADD THIS LINE
+
         };
     }, []);
+
+    useEffect(() => {
+        if (!isPostsPage) {
+            setScrollProgress(0);
+        }
+    }, [isPostsPage]);
 
     useEffect(() => {
         const isPostPage = router.pathname.startsWith('/posts/');
@@ -82,7 +101,10 @@ export default function App({ Component, pageProps }) {
 
                 <div className={`${styles2.topContent} ${shouldBlur ? styles2.blurBackdrop : ''}`} >
                     <Navbar className={styles2.nbar} />
-                    <Component {...pageProps} />
+                    <Component {...pageProps}
+                        scrollProgress={scrollProgress}
+                        showProgress={isPostsPage}
+                    />
                 </div>
                 <Analytics />
                 <SpeedInsights />

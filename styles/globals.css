@@ -65,6 +65,9 @@ button {
   /* You can move global styles like line-height here */
 }
 
+
+
+
 /* 2. Each section is a flex container to create the two columns */
 .split-section {
   display: flex;
@@ -78,12 +81,20 @@ button {
 
 /* 3. The left column (1/3 width) for the header */
 .left-column {
-  flex: 1;
+  /* flex-grow: 1; */
+  width: 25%;
   /* background-color: red; */
   /* This is shorthand for flex-grow: 1, flex-shrink: 1, flex-basis: 0% */
   /* A more explicit way is to use flex-basis */
   /* flex-basis: 33.33%; */
   /* height: 20vh */
+  /* word-break: anywhere; */
+  /* word-wrap: break-word; */
+  /* min-width: 10%; */
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+
 }
 
 /* 4. The magic! Make the H1 sticky within the left column */
@@ -99,19 +110,45 @@ button {
   font-size: 2rem;
   font-weight: bold;
   /* color: red; */
-  text-justify: inter-character;
+  text-justify: inter-word;
   text-align: right;
   align-self: flex-start
 }
 
 /* 5. The right column (2/3 width) for the main content */
 .right-column {
-  flex: 3;
+  /* flex-grow: 3; */
+  margin-top: 0em;
+  width: 75%;
   /* Takes up twice the space of the left column */
   /* flex-basis: 66.67%; */
-  min-width: 0;
+  min-width: 1%;
   /* A flexbox trick to prevent content from overflowing its container */
   display: flex;
   flex-direction: column;
-  gap: 1em
+
+  /* gap: 1em; */
+}
+
+.right-column h1 {}
+
+
+@media (max-aspect-ratio: 1/1) {
+  .split-section {
+    flex-direction: column;
+    gap: 0rem;
+  }
+
+  .left-column h1 {
+    text-align: left;
+  }
+
+  .left-column {
+    width: 100%
+  }
+
+  .right-column {
+    width: 100%
+  }
+
 }

@@ -51,7 +51,7 @@ The earliest deadlines tend to be around December 15th (if you're also applying 
 | November | - Your list of schools should be near finalized <br> - Email LOR writers with your list, their deadlines, and your current SOP/PS drafts <br> - By the end of the month, your SOP and PS should be final or near final
 | December | - Follow up with any faculty you connected with <br> - Write customized SOP/PS for each school <br> - Submit your applications!
 
-# GRE/PGRE?
+# GRE / PGRE?
 | Resources |
 |-----------|
 | - _Conquering the Physics GRE_, Kahn & Anderson <br>  - [Physics GRE Official Practice Book](https://www.ets.org/pdfs/gre/practice-book-physics.pdf)|
