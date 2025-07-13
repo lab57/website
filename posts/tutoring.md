@@ -24,5 +24,5 @@ Below is the list of courses I am comfortable tutoring. This is not a complete l
 | Subject | Courses |
 |---------|-------|
 |Physics|AP<br>Mechanics<br>Electromagnetism/Circuits<br>Thermodynamics<br>Quantum Mechanics/Physical Chemistry<br>Most courses through the undergraduate level|
-|Mathematics|Integral/Differential (1/2/AP)<br>Multivariable Calculus (3)<br>Linear Algebra<br>Differential Equations<br>Nonlinear Dynamics & Chaos<br>Real Analysis|
+|Mathematics|Integral/Differential Calculus (1/2/AP)<br>Multivariable Calculus (3)<br>Linear Algebra<br>Differential Equations<br>Nonlinear Dynamics & Chaos<br>Real Analysis|
 |Computer Science | AP Computer Science (CSP/CSA)<br>Introduction to Computer Science<br>Data Structures & Algorithms<br>Discrete Mathematics/Intro to Proofs<br>Machine Learning/AI<br>Most courses through the undergraduate level|

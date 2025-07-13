@@ -119,7 +119,7 @@ export default function Home() {
                             <p>
                                 I recently graduated from UMass Amherst with an M.S. degree in Computer Science, and B.S. degrees in Physics, Mathematics, and Computer Science. In the fall, I'm moving to Cornell University to start my Ph.D. in
                                 the College of Applied & Engineering Physics, focusing on quantum information. During my masters, I focused on studying applications of modern reinforcement learning techniques to problems in quantum communication
-                                (e.g, circuit compilation, memory entanglement generation). During my undergraduate programs, I focused on nuclear physics, mostly neutrinoless double beta decay, where my thesis was on R&D for the nEXO experiment
+                                (e.g, circuit compilation, memory entanglement generation). During my undergraduate programs, I focused on nuclear physics, mostly neutrinoless double beta decay, where my thesis was on R&D for the nEXO experiment.
                                 I also had some side projects working on simulators for guassian quantum systems. I'm broadly interested in quantum information, particle physics, cosmology, and machine learning, and I'm usually working on projects in these areas, or some intersection of them.
 
 

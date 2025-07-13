@@ -14,8 +14,9 @@ import { useEffect, useState } from 'react';
 // const Gravity = dynamic(() => import("../components/Lorenz"), {
 //     ssr: false
 // });
-import Lorenz from "../components/LorenzWebGL"
+// import Lorenz from "../components/LorenzWebGL"
 // import Lorenz from "../components/LorenzEE"
+// import Lorenz from "../components/LorenzWebGL_Precomputed_Streamed"
 
 import { MathJaxContext } from "better-react-mathjax"
 
@@ -94,8 +95,8 @@ export default function App({ Component, pageProps }) {
                 </Head>
                 <div className={styles2.backgroundContent}>
                     {/* <div className={`${styles2.backgroundContent} ${shouldBlur ? styles2.blurredBackground : ''}`}> */}
-                    <Lorenz className={styles2.background} showEllipses={showEllipsesState} isPaused={shouldBlur} />
-
+                    {/* <Lorenz className={styles2.background} showEllipses={showEllipsesState} isPaused={shouldBlur} /> */}
+                    {/* <LorenzWASM /> */}
 
                 </div>
 
