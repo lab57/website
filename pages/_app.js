@@ -45,6 +45,27 @@ export default function App({ Component, pageProps }) {
     const [scrollProgress, setScrollProgress] = useState(0);
 
     const [isWasmReady, setIsWasmReady] = useState(false);
+
+    // useEffect(() => {
+    //     // This handler now stops propagation for all touch events.
+    //     const stopTouchPropagation = (e) => {
+    //         e.stopPropagation();
+    //     };
+
+    //     const touchEvents = ['touchstart', 'touchend', 'touchmove'];
+
+    //     // Add listeners in the "capture" phase to run them first.
+    //     touchEvents.forEach(eventName => {
+    //         window.addEventListener(eventName, stopTouchPropagation, { capture: true });
+    //     });
+
+    //     return () => {
+    //         // Cleanup: remove the listeners when the component unmounts.
+    //         touchEvents.forEach(eventName => {
+    //             window.removeEventListener(eventName, stopTouchPropagation, { capture: true });
+    //         });
+    //     };
+    // }, []); // The empty array ensures this runs only once when the app mounts.
     useEffect(() => {
         const handleWasmReady = () => setIsWasmReady(true);
         window.addEventListener('WasmReady', handleWasmReady);
@@ -135,14 +156,8 @@ export default function App({ Component, pageProps }) {
                     {/* <lorenzWASM className={styles2.background} /> */}
 
                     <canvas class="emscripten" id="canvas" tabindex={-1}></canvas>
-
                     {/* <script async type="text/javascript" src="app.js"></script> */}
-                    <Script src="/index.js" strategy="beforeInteractive" onLoad={() => {
-                        console.log("DIAGNOSTIC: index.js script has finished loading.");
-                    }}
-                        onError={(e) => {
-                            console.error("DIAGNOSTIC: The index.js script failed to load.", e);
-                        }} ></Script>
+                    <Script src="/index.js" strategy="beforeInteractive" ></Script>
 
                 </div>
 

@@ -1,5 +1,5 @@
 :root {
-  --c1: #302541;
+  --c1: rgb(48, 37, 65);
   --c2: #A882DD;
   --c3: #20A39E;
   --c4: #FAF9F9;
@@ -96,6 +96,20 @@ button {
   hyphens: auto;
 
 }
+
+.emscripten canvas {
+  pointer-events: none;
+  touch-action: none;
+  z-index: -999;
+}
+
+canvas#canvas {
+  pointer-events: none;
+  z-index: -999;
+  touch-action: none;
+}
+
+
 
 /* 4. The magic! Make the H1 sticky within the left column */
 .left-column h1 {
