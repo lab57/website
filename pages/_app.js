@@ -9,6 +9,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
+import Script from 'next/script'; // 1. IMPORT THE SCRIPT COMPONENT
 
 
 // const Gravity = dynamic(() => import("../components/Lorenz"), {
@@ -19,6 +20,10 @@ import { useEffect, useState } from 'react';
 // import Lorenz from "../components/LorenzWebGL_Precomputed_Streamed"
 
 import { MathJaxContext } from "better-react-mathjax"
+
+const lorenzWASM = dynamic(() => import("../components/LorenzWASM"), {
+    ssr: false
+});
 
 const config = {
 
@@ -33,11 +38,21 @@ const config = {
 export default function App({ Component, pageProps }) {
     const router = useRouter();
     const isHomePage = router.pathname === '/';
-    const isPostsPage = router.pathname.startsWith('/posts'); // ADD THIS LINE
+    const isPostsPage = router.pathname.startsWith('/posts');
 
     const [activeHomeSection, setActiveHomeSection] = useState(0);
     const [shouldBlur, setShouldBlur] = useState(false);
-    const [scrollProgress, setScrollProgress] = useState(0); // ADD THIS LINE
+    const [scrollProgress, setScrollProgress] = useState(0);
+
+    const [isWasmReady, setIsWasmReady] = useState(false);
+    useEffect(() => {
+        const handleWasmReady = () => setIsWasmReady(true);
+        window.addEventListener('WasmReady', handleWasmReady);
+
+        return () => {
+            window.removeEventListener('WasmReady', handleWasmReady);
+        };
+    }, []); // Empty dependency array ensures this runs only once.
 
 
     // Listen for section changes from the home page
@@ -71,10 +86,18 @@ export default function App({ Component, pageProps }) {
         setShouldBlur(isPostPage);
     }, [router.pathname]);
 
+    const showEllipsesState = isHomePage && activeHomeSection === 0;
+    useEffect(() => {
+        console.log("meow")
+        if (window.Module && typeof window.Module.triggerAnimation === 'function') {
+            console.log("trigger", showEllipsesState)
+            window.Module.triggerAnimation(!showEllipsesState);
+        }
+    }, [showEllipsesState, isWasmReady]);
+
 
 
     // Determine if ellipses should be shown - only on homepage AND only in first section
-    const showEllipsesState = isHomePage && activeHomeSection === 0;
 
     console.log("Is home page?", isHomePage, "Active section:", activeHomeSection, "Show ellipses:", showEllipsesState);
 
@@ -92,11 +115,34 @@ export default function App({ Component, pageProps }) {
 
                     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
                         onload="renderMathInElement(document.body);"></script>
+
+                    <script
+                        dangerouslySetInnerHTML={{
+                            __html: `
+                            window.Module = {
+                                onRuntimeInitialized: function() {
+                                    console.log('WASM Runtime Initialized.');
+                                    window.dispatchEvent(new CustomEvent('WasmReady'));
+                                }
+                            };
+                        `,
+                        }}
+                    />
                 </Head>
                 <div className={styles2.backgroundContent}>
                     {/* <div className={`${styles2.backgroundContent} ${shouldBlur ? styles2.blurredBackground : ''}`}> */}
                     {/* <Lorenz className={styles2.background} showEllipses={showEllipsesState} isPaused={shouldBlur} /> */}
-                    {/* <LorenzWASM /> */}
+                    {/* <lorenzWASM className={styles2.background} /> */}
+
+                    <canvas class="emscripten" id="canvas" tabindex={-1}></canvas>
+
+                    {/* <script async type="text/javascript" src="app.js"></script> */}
+                    <Script src="/index.js" strategy="beforeInteractive" onLoad={() => {
+                        console.log("DIAGNOSTIC: index.js script has finished loading.");
+                    }}
+                        onError={(e) => {
+                            console.error("DIAGNOSTIC: The index.js script failed to load.", e);
+                        }} ></Script>
 
                 </div>
 
