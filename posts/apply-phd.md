@@ -44,7 +44,7 @@ The earliest deadlines tend to be around December 15th (if you're also applying 
 
 | Month   | Goals/Tasks                   |
 |---------|---------------------------|
-| June    | - Decide if you will take the GRE/PGRE, and begin studying <br> - Draft an initial list of schools you may be interested in applying to   |
+| June/July    | - Decide if you will take the GRE/PGRE, and begin studying <br> - Draft an initial list of schools you may be interested in applying to   |
 | August    | - Start to think more about your list <br> - Get lists of interested faculty from schools you know you're interested in <br> - Ramp up studying for PGRE before semester begins | 
 | September | - Narrow down who will be writing your letters of recommendation (LOR) <br> - Write initial draft of Statement of Purpose (SOP) and Personal Statement (PS)  <br> - Begin to connect with faculty who might interest you
 | October | - Email your LOR writers to ask if they will write you a letter <br> - Collect feedback on your SOP and PS drafts to refine them <br> - Update your CV <br> - Take the GRE/PGRE

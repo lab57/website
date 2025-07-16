@@ -1,33 +1,34 @@
-.navbar {
-    min-width: 100%;
-    height: 20px;
-    position: fixed;
-
-}
-
-
 .outer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* position: fixed;
-    top: 0; */
-
 }
 
 .container {
     display: flex;
     width: 100vw;
-    justify-content: space-evenly;
+    /* This pushes the h2 and links wrapper to opposite ends */
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
     flex-direction: row;
-    padding: 1rem;
+    /* padding: 1rem 1rem 0rem 1rem; */
     font-weight: 600;
     font-size: 1.5em;
     max-width: 75%;
-
+    min-height: 3em;
 }
 
-
+/* New style for the links' container */
+.linksWrapper {
+    display: flex;
+    /* This will space the links evenly within THIS container */
+    justify-content: space-evenly;
+    align-items: center;
+    /* Crucial: This makes the container expand to fill empty space */
+    flex-grow: 1;
+    flex-wrap: wrap;
+}
 
 .divider {
     height: 2px;
@@ -36,48 +37,60 @@
     align-items: center;
     border-radius: 5px;
     position: relative;
-    /* ADD THIS */
     overflow: hidden;
-    /* ADD THIS */
-
 }
 
-/* ADD THIS NEW CLASS */
 .progressFill {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     background: var(--c3);
-    /* Your green color */
     border-radius: 5px;
     transition: width 0.1s ease-out;
-    /* Smooth progress animation */
 }
 
 @media (max-aspect-ratio: 1/1) {
     .container {
         max-width: 95%;
-
+        /* Center items on smaller screens, especially when they wrap */
+        justify-content: center;
     }
 
     .divider {
-        width: 95%
+        width: 95%;
     }
 }
 
 .container a {
-    transition: text-decoration 200ms ease-in-out;
-    /* text-decoration: underline solid transparent; */
     transition: all 200ms ease-in-out;
+    margin: 0.25rem 0.5rem;
 }
 
 .container a:hover,
 .container a:focus,
 .container a:active {
-    /* text-decoration: underline solid var(--c3);*/
-    /* transform: scale(1.15)
-     */
     color: var(--c3);
-    /* transition: 0.2s ease 0s */
+}
+
+.myName {
+    /* Initial "hidden" state for the name */
+    opacity: 0;
+    transform: translateX(0px);
+    max-width: 1px;
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: opacity .75s ease-in-out, transform .75s ease-in-out, max-width .75s ease-in-out, margin 1s ease-in-out;
+}
+
+@media (min-aspect-ratio: 1/1) {
+
+    .myName.show {
+        /* Final "visible" state for the name */
+        opacity: 1;
+        transform: translateX(0);
+        max-width: 300px;
+        /* margin: 0.25rem 0.5rem; */
+    }
 }

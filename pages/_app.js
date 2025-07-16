@@ -45,6 +45,9 @@ export default function App({ Component, pageProps }) {
     const [scrollProgress, setScrollProgress] = useState(0);
 
     const [isWasmReady, setIsWasmReady] = useState(false);
+    const [isAnimationInitalized, setAnimationInitalized] = useState(false);
+    let showEllipsesState = isHomePage && activeHomeSection === 0;
+
 
     // useEffect(() => {
     //     // This handler now stops propagation for all touch events.
@@ -66,6 +69,8 @@ export default function App({ Component, pageProps }) {
     //         });
     //     };
     // }, []); // The empty array ensures this runs only once when the app mounts.
+
+
     useEffect(() => {
         const handleWasmReady = () => setIsWasmReady(true);
         window.addEventListener('WasmReady', handleWasmReady);
@@ -103,13 +108,37 @@ export default function App({ Component, pageProps }) {
     }, [isPostsPage]);
 
     useEffect(() => {
+        if (isHomePage) {
+            setActiveHomeSection(0);
+        }
+    }, [isHomePage]);
+
+    useEffect(() => {
         const isPostPage = router.pathname.startsWith('/posts/');
         setShouldBlur(isPostPage);
     }, [router.pathname]);
 
-    const showEllipsesState = isHomePage && activeHomeSection === 0;
+    // This effect runs once on mount to set up the event listener.
     useEffect(() => {
-        console.log("meow")
+        const handleWasmReady = () => {
+            console.log("React received the 'wasmReady' event.");
+            setIsWasmReady(true);
+        };
+
+        window.addEventListener('wasmReady', handleWasmReady);
+
+        // Important: Return a cleanup function to remove the listener when the component unmounts.
+        return () => {
+            window.removeEventListener('wasmReady', handleWasmReady);
+        };
+    }, []); // The empty dependency array [] ensures this runs only once.
+
+
+    useEffect(() => {
+        if (isWasmReady && !isAnimationInitalized) {
+            window.Module.setInitialState(!showEllipsesState);
+            setAnimationInitalized(true);
+        }
         if (window.Module && typeof window.Module.triggerAnimation === 'function') {
             console.log("trigger", showEllipsesState)
             window.Module.triggerAnimation(!showEllipsesState);
@@ -157,12 +186,12 @@ export default function App({ Component, pageProps }) {
 
                     <canvas class="emscripten" id="canvas" tabindex={-1}></canvas>
                     {/* <script async type="text/javascript" src="app.js"></script> */}
-                    <Script src="/index.js" strategy="beforeInteractive" ></Script>
+                    <Script src="/load_app.js" strategy="afterInteractive" />
 
                 </div>
 
                 <div className={`${styles2.topContent} ${shouldBlur ? styles2.blurBackdrop : ''}`} >
-                    <Navbar className={styles2.nbar} />
+                    <Navbar className={styles2.nbar} showName={!showEllipsesState} />
                     <Component {...pageProps}
                         scrollProgress={scrollProgress}
                         showProgress={isPostsPage}

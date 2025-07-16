@@ -91,6 +91,11 @@ button {
   /* word-break: anywhere; */
   /* word-wrap: break-word; */
   /* min-width: 10%; */
+  text-align: right;
+  text-wrap: wrap;
+  /* or start */
+
+  /* This is correct, keep it */
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
   hyphens: auto;
