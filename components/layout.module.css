@@ -2,7 +2,7 @@
     max-width: 75%;
     min-width: 75%;
     padding: 0 1rem;
-    margin: 1rem auto 1rem;
+    margin: 0rem auto 0rem;
     line-height: 2;
     /* overflow-y: scroll; */
     max-height: 100%;
@@ -10,7 +10,7 @@
     /* Enable scrolling */
     /* height: calc(100vh - 8rem); */
     /* Constrain height */
-    height: calc(100vh - 6rem);
+    /* height: calc(100vh - 6rem); */
     /* ADD THIS: Constrain height */
     overflow-y: auto;
     /* ADD THIS: Enable scrolling */

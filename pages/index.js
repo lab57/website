@@ -68,43 +68,48 @@ export default function Home() {
     return (
         <div className={styles.container}>
             <div className={styles.snapContainer} onScroll={handleScroll} ref={snapContainerRef}>
+
                 <section className={styles.snapSection} >
-                    <main className={styles.main}>
-                        <div className={styles.textContent}>
+                    <div className={styles.nameSection}>
 
-                            <h1 className={styles.title}>
-                                Luc Barrett
-                            </h1>
-                            <p className={styles.description}>Ph.D. Student @ <b>Cornell University</b> </p>
-                            {/** <p className={styles.description}><a href="https://people.cs.umass.edu/~gvardoyan/#home" target="_blank">Vardoyan Lab</a> @ UMass Amherst</p> **/}
-                            {/* <p className={styles.description}>Ph.D. Student @ <b>Cornell University,</b>   </p>
+                        < main className={styles.main}>
+                            <div className={styles.textContent}>
+
+                                <h1 className={styles.title}>
+                                    Luc Barrett
+                                </h1>
+                                <p className={styles.description}>Ph.D. Student @ <b>Cornell University</b> </p>
+                                {/** <p className={styles.description}><a href="https://people.cs.umass.edu/~gvardoyan/#home" target="_blank">Vardoyan Lab</a> @ UMass Amherst</p> **/}
+                                {/* <p className={styles.description}>Ph.D. Student @ <b>Cornell University,</b>   </p>
                             <p className={styles.description}>College of Applied & Engineering Physics</p> */}
-                            <p className={styles.description}></p>
+                                <p className={styles.description}></p>
 
-                            {/* <p className={styles.description}><em>M.S. Computer Science</em> </p> */}
-                            <p className={styles.description}><em>B.S. Physics, B.S. Math, M.S./B.S. Computer Science</em></p>
-                            {/** <p className={styles.description}>Currently Studying at UMass Amherst</p> **/}
-                            {/* <h2 className={styles.findme}></h2> */}
-                        </div>
-                        <div className={styles.socials}>
-                            <Link href="https://www.linkedin.com/in/luc-barrett/" rel="noopener noreferrer" target="_blank">
-                                <Image src="/images/icons8-linkedin.svg" width={50} height={50} alt="Linkedin picture" />
-                            </Link>
-                            <Link href="https://www.instagram.com/luc.barrett57/" rel="noopener noreferrer" target="_blank">
-                                <Image src="/images/icons8-instagram.svg" width={50} height={50} alt="Instagram picture" />
-                            </Link>
-                            <Link href="https://github.com/lab57" rel="noopener noreferrer" target="_blank">
-                                <Image src="/images/icons8-github.svg" width={50} height={50} alt="Github picture" />
-                            </Link>
-                            <Link href="https://bsky.app/profile/lucwarm.bsky.social" rel="noopener noreferrer" target="_blank">
-                                <Image src="/images/Bluesky_logo_(black).svg" width={50} height={50} alt="Bluesky picture" />
-                            </Link>
-                        </div>
+                                {/* <p className={styles.description}><em>M.S. Computer Science</em> </p> */}
+                                <p className={styles.description}><em>B.S. Physics, B.S. Math, M.S./B.S. Computer Science</em></p>
+                                {/** <p className={styles.description}>Currently Studying at UMass Amherst</p> **/}
+                                {/* <h2 className={styles.findme}></h2> */}
+                            </div>
+                            <div className={styles.socials}>
+                                <Link href="https://www.linkedin.com/in/luc-barrett/" rel="noopener noreferrer" target="_blank">
+                                    <Image src="/images/icons8-linkedin.svg" width={50} height={50} alt="Linkedin picture" />
+                                </Link>
+                                <Link href="https://www.instagram.com/luc.barrett57/" rel="noopener noreferrer" target="_blank">
+                                    <Image src="/images/icons8-instagram.svg" width={50} height={50} alt="Instagram picture" />
+                                </Link>
+                                <Link href="https://github.com/lab57" rel="noopener noreferrer" target="_blank">
+                                    <Image src="/images/icons8-github.svg" width={50} height={50} alt="Github picture" />
+                                </Link>
+                                <Link href="https://bsky.app/profile/lucwarm.bsky.social" rel="noopener noreferrer" target="_blank">
+                                    <Image src="/images/Bluesky_logo_(black).svg" width={50} height={50} alt="Bluesky picture" />
+                                </Link>
+                            </div>
 
-                    </main>
-                    <div className={styles.scrollIndicator} style={{ opacity: chevronOpacity }}>
-                        <div className={styles.arrowDown}></div>
+                        </main>
+                        <div className={styles.scrollIndicator} style={{ opacity: chevronOpacity }}>
+                            <div className={styles.arrowDown}></div>
+                        </div>
                     </div>
+
                 </section>
                 <section className={styles.snapSection}>
                     {/* <div className={styles.scrollIndicator} style={{ top: '20px' }}>

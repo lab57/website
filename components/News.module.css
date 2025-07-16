@@ -4,8 +4,8 @@
     font-family: freight-sans-pro, sans-serif;
     font-style: normal;
     font-weight: 300;
-    padding-left: 1rem;
-    padding-right: 1rem
+    /* padding-left: 1rem; */
+    /* padding-right: 1rem */
 }
 
 .newsBox {
@@ -100,11 +100,11 @@
 /* Responsive adjustments */
 @media (max-width: 600px) {
     .newsContainer {
-        padding: 0 0.5rem;
+        /* padding: 0 0.5rem; */
     }
 
     .newsBox {
-        padding: 1rem;
+        /* padding: 1rem; */
     }
 
     .itemContainer {

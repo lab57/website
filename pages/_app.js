@@ -160,6 +160,8 @@ export default function App({ Component, pageProps }) {
                     <title>Luc Barrett</title>
                     <link rel="icon" href="/L.png" />
                     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous" />
+                    {/* <meta name="theme-color" content="#ff8000" /> */}
+                    {/* <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> */}
 
                     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
 
