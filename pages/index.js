@@ -131,7 +131,7 @@ export default function Home() {
                             </p>
 
                             <p>
-                                This website is for hosting my <Link href="/posts">ramblings</Link>, projects, or anything else I want to share. You can shoot me an email above if you'd like to connect!
+                                This website is for hosting my <Link href="/posts">ramblings</Link>, projects, or anything else I want to share. You can shoot me an email above if you'd like to connect! <Link href="/availability">My availability is posted here,</Link> 
 
 
                             </p>

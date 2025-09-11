@@ -1,0 +1,65 @@
+.content3 div{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    background-color: pink;
+    padding: 1em;
+    min-height: 100px;
+    min-width: 100px;
+    margin: 1em;
+}
+
+.aboutSection {
+/* background-color: pink; */
+  height: 100%;
+  /* max-width: 100%;
+  min-width: 100%; */
+  /* text-align: left; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: baseline;
+  width: 100%
+  /* scrollbar-width: thin; */
+  /* overflow-y: auto; */
+  /* padding: 0rem 1rem; */
+  /* overflow: visible; */
+  /* backdrop-filter: blur(5px); */
+
+
+  /* overscroll-behavior: contain */
+}
+
+.calWrapperBig{
+    border-radius: 20px;
+    width: 75%;
+    height: 75%;
+    /* width: 800px; */
+    overflow:hidden;
+    filter: invert(0);
+}
+
+/* .calWrapperSmall{
+    border-radius: 20px;
+    /* width: 400px; */
+    /* overflow:hidden; */
+/* }  */
+
+/* @media (min-aspect-ratio: 1/1) {
+
+  .calWrapperSmall {
+    display: none;
+    height: 0px;
+  }
+
+
+}
+@media (max-aspect-ratio: 1/1) {
+
+  .calWrapperBig {
+    display: none;
+    height: 0px;
+  }
+
+
+} */

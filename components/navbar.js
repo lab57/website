@@ -28,6 +28,7 @@ export default function Navbar({
                     <Link href="/posts">Posts</Link>
                     <Link href="/CV.pdf">CV</Link>
                     <Link href="mailto: me@lucbarrett.info">Email</Link>
+                    {/* <Link href="/availability">Availability</Link> */}
                 </div>
             </div>
             <div className={styles.divider}>
