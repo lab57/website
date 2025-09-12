@@ -12,8 +12,8 @@ export default function Custom404() {
             // Function to update the width based on the window size
             const handleResize = () => {
             // Example logic: make it full-wi
-            setIframeWidth(window.innerWidth);
-            setIframeWidth(window.innerHeight);
+            setIframeWidth(.75*window.innerWidth);
+            setIframeHeight(.75*window.innerHeight);
 
 
             };
@@ -40,8 +40,8 @@ export default function Custom404() {
             <iframe
             src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FNew_York&showPrint=0&mode=WEEK&showCalendars=0&showTz=0&title=Luc's%20Schedule&src=bGFiMzkyQGNvcm5lbGwuZWR1&src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23b31b1b&color=%230b8043"
             style={{ borderWidth: 0 }}
-            width={iframeWidth}
-            height={iframeHeight}
+            width="100%"
+            height="100%"
             frameBorder="0"
             scrolling="no"
             title="Luc's Schedule"
