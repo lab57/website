@@ -27,7 +27,7 @@ const newsItems = [
     {
         id: 5,
         date: '03/01/2024',
-        title: 'Awarded the Kandula Sastry award for the outstanding student in the department',
+        title: 'Awarded the Kandula Sastry award for the outstanding student in the physics department',
     },
 ];
 
@@ -64,6 +64,16 @@ export default function Home() {
             window.dispatchEvent(event);
         }
     }
+
+    const scrollToNextSection = () => {
+        if (snapContainerRef.current) {
+            const sectionHeight = snapContainerRef.current.clientHeight;
+            snapContainerRef.current.scrollTo({
+                top: sectionHeight,
+                behavior: 'smooth' // This makes it scroll smoothly
+            });
+        }
+    };
 
     return (
         <div className={styles.container}>
@@ -105,7 +115,7 @@ export default function Home() {
                             </div>
 
                         </main>
-                        <div className={styles.scrollIndicator} style={{ opacity: chevronOpacity }}>
+                        <div className={styles.scrollIndicator} style={{ opacity: chevronOpacity }} onClick={scrollToNextSection}>
                             <div className={styles.arrowDown}></div>
                         </div>
                     </div>
@@ -118,24 +128,41 @@ export default function Home() {
                     <main className={styles.aboutSection}>
                         <div className={postStyles.content}>
                             <h2>About Me</h2>
-                            <p>
-                                Hi! My name's Luc, thanks for checking out my site!
-                            </p>
-                            <p>
-                                I recently graduated from UMass Amherst with an M.S. degree in Computer Science, and B.S. degrees in Physics, Mathematics, and Computer Science. In the fall, I'm moving to Cornell University to start my Ph.D. in
+
+                            <div className={styles.aboutContainer}>
+
+                                {/* <div className={styles.floatingpfp}> */}
+
+                                    {/* <Image src="/luc.JPG" width={300} height={500}></Image> */}
+                                    {/* <p>Image Caption</p> */}
+                                {/* </div> */}
+
+                                <p>
+                                    Hi! My name's Luc, thanks for checking out my site!
+                                </p>
+                                <p>
+                                    {/* I recently graduated from UMass Amherst with an M.S. degree in Computer Science, and B.S. degrees in Physics, Mathematics, and Computer Science. In the fall, I'm moving to Cornell University to start my Ph.D. in
                                 the College of Applied & Engineering Physics, focusing on quantum information. During my masters, I focused on studying applications of modern reinforcement learning techniques to problems in quantum communication
                                 (e.g, circuit compilation, memory entanglement generation). During my undergraduate programs, I focused on nuclear physics, mostly neutrinoless double beta decay, where my thesis was on R&D for the nEXO experiment.
-                                I also had some side projects working on simulators for guassian quantum systems. I'm broadly interested in quantum information, particle physics, cosmology, and machine learning, and I'm usually working on projects in these areas, or some intersection of them.
+                                I also had some side projects working on simulators for guassian quantum systems. I'm broadly interested in quantum information, particle physics, cosmology, and machine learning, and I'm usually working on projects in these areas, or some intersection of them. */}
+
+                                    I'm a first-year Ph.D. student in the College of Applied & Engineering Physics at Cornell University. I'm interested in the development of quantum computing hardware and the applications of modern quantum sensing technology to experiments probing fundamental physics.
+                                </p> <p>
+                                    I recently graduated from the University of Massachusetts Amherst with an M.S. degree in Computer Science, and B.S. degrees in Physics, Mathematics, and Computer Science. During my masters, I focused on studying applications of modern reinforcement learning techniques to problems in quantum communication
+                                    (e.g, circuit compilation, memory entanglement generation). During my undergraduate programs, I focused on nuclear physics, mostly neutrinoless double beta decay, where my thesis was on R&D for the nEXO experiment.
+                                    I also had some side projects working on simulators for guassian quantum systems.
 
 
-                            </p>
 
-                            <p>
-                                This website is for hosting my <Link href="/posts">ramblings</Link>, projects, or anything else I want to share. You can shoot me an email above if you'd like to connect! <Link href="/availability">My availability is posted here,</Link> 
+                                </p>
+
+                                <p>
+                                    This website is for hosting my <Link href="/posts">ramblings</Link>, projects, or anything else I want to share. You can shoot me an email above if you'd like to connect! <Link href="/availability">My availability is posted here.</Link>
 
 
-                            </p>
+                                </p>
 
+                            </div >
 
 
                         </div>

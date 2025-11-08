@@ -2,6 +2,7 @@
 title: "Applying to a STEM Ph.D. Program"
 date: "2025-03-19"
 excerpt: "My thoughts and advice on putting together a good Ph.D. application for physics or CS, along with the resources I found the most helpful"
+tags: ["Blog"]
 ---
 
 # Introduction

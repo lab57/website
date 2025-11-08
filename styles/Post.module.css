@@ -26,6 +26,15 @@
     background: #555;
 }
 
+.article a {
+    position: relative;
+    color: var(--c3);
+    text-decoration: underline;
+    text-shadow: none;
+    z-index: 2;
+}
+
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -94,8 +103,8 @@
 
 .content h2 {
     /* margin-bottom: .5rem; */
-    /* margin-top: .5rem */
-    /* margin-bottom: -.5em */
+    margin-top: 1rem
+        /* margin-bottom: -.5em */
 }
 
 /* Remove indentation for math blocks */
@@ -229,4 +238,178 @@
     /* flex-basis: 66.67%; */
     min-width: 0;
     /* A flexbox trick to prevent content from overflowing its container */
+}
+
+.eduNameDate {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+
+
+
+
+.cvEntry {
+    border-left: 3px solid var(--c2);
+    /* Accent color border */
+    padding-left: .5rem;
+    margin-bottom: 2rem;
+}
+
+.cvEntry:last-child {
+    margin-bottom: 0;
+    /* No margin on the last entry in a section */
+}
+
+
+.cvEntry h2 {
+    color: var(--c3);
+    /* Accent color for title */
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    /* Remove default margins */
+    margin-top: 0;
+}
+
+.cvEntry>ul>li>ul {
+    margin-top: -4px;
+    margin-bottom: 12px;
+}
+
+.cvEntry .eduNameDate em {
+    color: var(--c5);
+    /* Subtler color for date */
+    font-style: normal;
+    font-weight: 300;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    padding-left: 1rem;
+}
+
+.cvEntry>p {
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--c4);
+}
+
+/* Style for the role/degree (e.g., "Ph.D. Applied Physics") */
+.cvEntry>p>em {
+    color: var(--c5);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.1rem;
+    display: block;
+    /* Make it its own line */
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.cvEntry ul {
+    margin-top: 0.75rem;
+    padding-left: 1.25rem;
+    /* Indent bullets */
+    color: var(--c5);
+    /* Lighter text for bullets */
+}
+
+.cvEntry ul li {
+    margin-bottom: 0rem;
+    /* Space out bullets */
+}
+
+.cvEntry ul ul {
+    list-style-type: circle;
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
+    font-size: 0.95rem;
+}
+
+/* Style for poster presentation blocks */
+.cvEntry .presentationAuthor {
+    font-style: italic;
+    color: var(--c5);
+    margin-top: 0.25rem;
+}
+
+.cvEntry .presentationLocation {
+    font-size: 0.9rem;
+    font-weight: 300;
+    margin-top: 0.25rem;
+}
+
+.publist ol {
+    list-style: none;
+    /* Remove default numbering */
+    counter-reset: my-counter;
+    /* Initialize a counter */
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.publist li {
+    counter-increment: my-counter;
+    /* Increment the counter for each list item */
+    margin-bottom: 5px;
+    /* margin-left: 0px; */
+    padding-left: 1em;
+    /* padding-right: 0px; */
+}
+
+.publist li::marker {
+    content: "[" counter(my-counter)"]";
+    /* Display the counter value */
+    /* color: blue; Custom color for the number */
+    font-weight: bold;
+    /* margin-right: 20px; */
+}
+
+#contents {
+    /* background-color: blue; */
+    /* margin-top: 2em; */
+}
+
+#contentlist {
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 10px;
+    /* margin-top: 1.5rem; */
+}
+
+#contentlist li {
+    /* background-color: blue; */
+    /* flex-basis: 30%; */
+
+}
+
+.justifytext {
+    text-align: justify;
+    /* background-color: blue; */
+    /* text-justify: inter-character; */
+
+}
+
+
+.awards ul {
+    /* background-color: blue;  */
+     
+}
+
+
+.awards ul>li {
+    /* background-color: blue;  */
+    margin-bottom: .6em
+
+     
+}
+
+.awards p {
+    /* background-color: blue;  */
+    margin-bottom: .3em;
+    
+     
 }

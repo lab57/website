@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"pages/_app.js -> ../components/LorenzWASM\":{\"id\":\"pages/_app.js -> ../components/LorenzWASM\",\"files\":[\"static/chunks/_pages-dir-browser_components_LorenzWASM_js.js\"]}}"

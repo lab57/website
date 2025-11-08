@@ -114,7 +114,7 @@ export default function App({ Component, pageProps }) {
     }, [isHomePage]);
 
     useEffect(() => {
-        const isPostPage = router.pathname.startsWith('/posts/');
+        const isPostPage = router.pathname.startsWith('/posts/') || router.pathname.startsWith('/cv-web') ;
         setShouldBlur(isPostPage);
     }, [router.pathname]);
 

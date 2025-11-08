@@ -1,6 +1,8 @@
 import styles from '../styles/Home.module.css';
 import styles2 from '../styles/Availability.module.css'
 import React, { useState, useEffect } from 'react';
+import postStyles from "../styles/Post.module.css"
+import Layout from "../components/layout"
 
 
 
@@ -31,9 +33,16 @@ export default function Custom404() {
 
 
     return (
-        <div className={styles.container}>
-            {/* <h1>404 - Page Not Found</h1>
-            <h1>(Probably under construction)</h1> */}
+        <Layout>
+
+        <div className={styles2.container}>
+            <div className={postStyles.content}>
+
+            {/* <h1>Weekly Schedule</h1> */}
+            <p>
+                             
+                </p> 
+            </div>
         <div className={styles2.aboutSection}>
             <div className={styles2.calWrapperBig}>
 
@@ -50,18 +59,19 @@ export default function Custom404() {
 
             {/* <div className={styles2.calWrapperSmall}>
 
-            <iframe
-            src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FNew_York&showPrint=0&mode=WEEK&showCalendars=0&showTz=0&title=Luc's%20Schedule&src=bGFiMzkyQGNvcm5lbGwuZWR1&src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23b31b1b&color=%230b8043"
-            style={{ borderWidth: 0 }}
-            width={iframeWidth}
+<iframe
+src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FNew_York&showPrint=0&mode=WEEK&showCalendars=0&showTz=0&title=Luc's%20Schedule&src=bGFiMzkyQGNvcm5lbGwuZWR1&src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23b31b1b&color=%230b8043"
+style={{ borderWidth: 0 }}
+width={iframeWidth}
 
-            height="600"
-            frameBorder="0"
-            scrolling="no"
-            title="Luc's Schedule"
-            ></iframe>
-            </div> */}
+height="600"
+frameBorder="0"
+scrolling="no"
+title="Luc's Schedule"
+></iframe>
+</div> */}
             </div>
         </div>
+        </Layout>
     )
 }

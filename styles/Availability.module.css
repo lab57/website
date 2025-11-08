@@ -9,9 +9,28 @@
     margin: 1em;
 }
 
+.container {
+  /* height: calc(100vh - 5em); */
+  padding: 0 0rem;
+  /* padding-top: 4rem; */
+  /* width: 75%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+  /* align-items: center; */
+  font-family: freight-sans-pro, sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  /* height: 100%; */
+  /* height: 100svh; */
+  scrollbar-width: none;
+  /* margin: 0em; */
+}
+
 .aboutSection {
 /* background-color: pink; */
-  height: 100%;
+  /* height: 100%; */
   /* max-width: 100%;
   min-width: 100%; */
   /* text-align: left; */
@@ -31,9 +50,10 @@
 }
 
 .calWrapperBig{
+  margin-top: 4em;
     border-radius: 20px;
-    width: 65%;
-    height: 75%;
+    width: 100%;
+    height: 70vh;
     /* width: 800px; */
     overflow:hidden;
     filter: invert(0);

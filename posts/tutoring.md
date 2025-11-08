@@ -2,6 +2,7 @@
 title: "Tutoring"
 date: "2025-06-25"
 excerpt: "Interested in tutoring? See information here!"
+tags: ["Blog"]
 ---
 
 
