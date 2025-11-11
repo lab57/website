@@ -240,11 +240,29 @@
     /* A flexbox trick to prevent content from overflowing its container */
 }
 
-.eduNameDate {
+/* .eduNameDate {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
+    text-align: left;
+    text-justify: none;
+} */
+
+.eduNameDate {
+    display: grid; /* Changed from flex */
+    grid-template-columns: 1fr auto; /* Creates a greedy first column and a content-sized second column */
+    align-items: baseline;
+    gap: 1rem; /* Adds space between the title and date */
+    text-align: left;
+    text-justify: none;
 }
+
+.noJust{
+
+    text-align: left;
+    text-justify: none;
+}
+
 
 
 
@@ -286,6 +304,13 @@
     font-size: 0.9rem;
     flex-shrink: 0;
     padding-left: 1rem;
+
+}
+
+
+.cvEntry em{
+        text-align: left;
+    text-justify: none;
 }
 
 .cvEntry>p {
@@ -308,7 +333,7 @@
 
 .cvEntry ul {
     margin-top: 0.75rem;
-    padding-left: 1.25rem;
+    /* padding-left: 1.25rem; */
     /* Indent bullets */
     color: var(--c5);
     /* Lighter text for bullets */
@@ -396,6 +421,7 @@
 
 .awards ul {
     /* background-color: blue;  */
+    margin-left: 0px;
      
 }
 
@@ -412,4 +438,21 @@
     margin-bottom: .3em;
     
      
+}
+
+.awards ul {
+list-style-type: none;
+}
+
+.awards div>ul {
+list-style-type: disc;
+padding-left: .5em;
+margin-left: 1.5em
+
+}
+.awards .eduNameDate {
+    display: grid;
+    align-items: start;
+    grid-template-columns: 3em 1fr;
+
 }

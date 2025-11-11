@@ -69,7 +69,7 @@ export default function CV() {
 
                             </p>
 
-                            <p>A PDF version of my academic CV is <Link href="/CV.pdf">available here</Link>. A one-page resume is <Link href="/resume.pdf">available here.</Link></p>
+                            <p>A PDF version of my academic CV is <Link href="/CV.pdf" rel="noopener noreferrer" target="_blank">available here</Link>. A one-page resume is <Link href="/resume.pdf" rel="noopener noreferrer" target="_blank">available here.</Link></p>
                         </div>
                     </section>
 
@@ -78,13 +78,24 @@ export default function CV() {
                             <div className="left-column"><h1>Education</h1></div>
                             <div className="right-column content">
 
+                                {/* <div className={styles.cvEntry}>
+                                    <div className={styles.eduNameDate}>
+                                        <h2>Cornell University</h2>
+                                        <em>Present</em>
+                                    </div>
+                                    <p className={styles.noJust}><em>Ph.D. Candidate - Applied Physics</em></p>
+                                    <ul>
+                                    </ul>
+                                </div> */}
+
                                 <div className={styles.cvEntry}>
                                     <div className={styles.eduNameDate}>
                                         <h2>Cornell University</h2>
                                         <em>2025-Present</em>
                                     </div>
-                                    <p><em>Ph.D. Applied Physics</em></p>
+                                    <p className={styles.noJust}><em>Ph.D. Applied Physics</em></p>
                                     <ul>
+                                        {/* <li>Quantum Circuits & Materials Lab</li> */}
                                     </ul>
                                 </div>
 
@@ -93,7 +104,7 @@ export default function CV() {
                                         <h2>University of Massachusetts Amherst</h2>
                                         <em>2024-Spring 2026</em>
                                     </div>
-                                    <p><em>M.S. Computer Science</em></p>
+                                    <p className={styles.noJust}><em>M.S. Computer Science</em></p>
                                     <ul>
                                         <li>Bay State Fellow</li>
                                         <li>Master's Project being completed in conjunction with first-year of PhD</li>
@@ -105,7 +116,7 @@ export default function CV() {
                                         <h2>University of Massachusetts Amherst</h2>
                                         <em>2020-2024</em>
                                     </div>
-                                    <p><em>B.S. Physics, B.S. Mathematics, B.S. Computer Science</em></p>
+                                    <p className={styles.noJust}><em>B.S. Physics, B.S. Mathematics, B.S. Computer Science</em></p>
                                     <ul>
                                         <li>GPA: 3.94</li>
                                         <li> Cum Laude, Commonwealth Honors Scholar with Greatest Distinction, Phi Beta Kappa</li>
@@ -276,56 +287,69 @@ export default function CV() {
 
                                         <li>
                                             <div className={styles.eduNameDate}>
-                                                <p>Fulbright Semifinalist, Fulbright Association (Research/Study, The Netherlands)</p>
                                                 <em>2025</em>
+                                                <p>Fulbright Semifinalist, Fulbright Association (Research/Study, The Netherlands)</p>
                                             </div>
                                         </li>
 
 
                                         <li>
                                             <div className={styles.eduNameDate}>
+                                                <em>2024</em>
+                                               <div>
                                                 <p>Bay State Fellowship, UMass Amherst College of Information & Computer Sciences</p>
-                                                <em>2024</em>
-                                            </div>
                                             <ul><li>Competitive fellowship providing a tuition waiver and stipend for an accelerated M.S. Computer Science degree</li></ul>
+
+                                               </div>
+                                            </div>
                                         </li>
 
                                         <li>
                                             <div className={styles.eduNameDate}>
+                                                <em>2024</em>
+                                                <div>
                                                 <p>Kandula Sastry Undergraduate Award, UMass Amherst Department of Physics</p>
-                                                <em>2024</em>
-                                            </div>
                                             <ul><li>Awarded annually to the outstanding physics student in the graduating class</li></ul>
+
+                                                </div>
+                                            
+                                            </div>
                                         </li>
 
                                         <li>
                                             <div className={styles.eduNameDate}>
-                                                <p>Phi Beta Kappa Membership, PBK Society</p>
                                                 <em>2024</em>
+                                                <p>Phi Beta Kappa Membership, PBK Society</p>
                                             </div>
                                         </li>
 
                                         <li>
                                             <div className={styles.eduNameDate}>
+                                                <em>2023</em>
+                                                <div>
                                                 <p>LeRoy F. Cook Jr. Memorial Award, UMass Amherst Department of Physics</p>
-                                                <em>2023</em>
-                                            </div>
                                             <ul><li>Awarded annually recognizing academic excellence and involvement in teaching or outreach</li></ul>
+
+                                                </div>
+                                            </div>
                                         </li>
 
                                         <li>
                                             <div className={styles.eduNameDate}>
-                                                <p>Phi Kappa Phi Membership, PKP Society</p>
                                                 <em>2023</em>
+                                                <p>Phi Kappa Phi Membership, PKP Society</p>
                                             </div>
                                         </li>
 
                                         <li>
                                             <div className={styles.eduNameDate}>
-                                                <p>Dean's List, UMass Amherst</p>
                                                 <em>2020-2024</em>
-                                            </div>
+                                                <div>
+                                                <p>Dean's List, UMass Amherst</p>
+
                                             <ul><li>Awarded 7 times, all of my full-time semesters, for achieving a semester GPA of 3.5+</li></ul>
+                                                </div>
+                                            </div>
                                         </li>
 
 
