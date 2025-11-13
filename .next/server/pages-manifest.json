@@ -2,8 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/cv-web": "pages/cv-web.js",
-  "/posts": "pages/posts.js",
-  "/": "pages/index.js",
-  "/availability": "pages/availability.js"
+  "/exam-timer": "pages/exam-timer.js",
+  "/404": "pages/404.js",
+  "/": "pages/index.js"
 }
