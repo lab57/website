@@ -27,22 +27,22 @@ export default function examTimer() {
     return (
         <>
         <Layout>
-            <div className={styles.postIndex}>
+            <div className={styles.postIndex} suppressHydrationWarning={true}>
 
                 <div className="container">
 
                 {/* Header Section */}
                 <header className="header">
                     {/* Logo Placeholder (SVG) */}
-                    <img src="/cornell_seal.svg" width="75px" ></img>
+                    <img src="/cornell_seal.svg" width="75px"  ></img>
 
                     {/* Vertical Line */}
                     <div className="verticalLine"></div>
 
                     {/* Text Lines */}
                     <div className="headerText">
-                        <p className="title">AEP3330</p>
-                        <p className="subtitle">Prelim II</p>
+                        <p className="title" contenteditable="true">Course Number</p>
+                        <p className="subtitle" contenteditable="true">Subtitle</p>
                     </div>
                 </header>
 
@@ -51,6 +51,8 @@ export default function examTimer() {
                     <div className="clock">{timeString}</div>
                     <div className="date">{dateString}</div>
                 </div>
+
+                {/* <p>End Time: 9:00pm</p> */}
 
             </div>
 
@@ -78,7 +80,7 @@ export default function examTimer() {
                     width: 100%;
                     // max-width: 10000px;
                     // margin-bottom: 3rem;
-                    padding: 1.25rem;
+                    // padding: 1.25rem;
                     // background-color: #fafafa;
                     // border: 1px solid #eaeaea;
                     border-radius: 10px;
@@ -150,10 +152,12 @@ export default function examTimer() {
                 .date {
                     font-size: 1.25rem;
                     color: #ffff;
-                    // margin-top: 0.75rem;
+                    // margin-top: -3.00rem;
                 }
             `}</style>
             </>
     )
 }
+
+examTimer.hideNavbar = true
 

@@ -48,6 +48,9 @@ export default function App({ Component, pageProps }) {
     const [isAnimationInitalized, setAnimationInitalized] = useState(false);
     let showEllipsesState = isHomePage && activeHomeSection === 0;
 
+    const getNavbar = Component.hideNavbar ? x => <></> : (x => <Navbar className={styles2.nbar} showName={!showEllipsesState} />);
+
+
 
     // useEffect(() => {
     //     // This handler now stops propagation for all touch events.
@@ -193,7 +196,8 @@ export default function App({ Component, pageProps }) {
                 </div>
 
                 <div className={`${styles2.topContent} ${shouldBlur ? styles2.blurBackdrop : ''}`} >
-                    <Navbar className={styles2.nbar} showName={!showEllipsesState} />
+                    {getNavbar()}
+                    {/* <Navbar className={styles2.nbar} showName={!showEllipsesState} /> */}
                     <Component {...pageProps}
                         scrollProgress={scrollProgress}
                         showProgress={isPostsPage}
