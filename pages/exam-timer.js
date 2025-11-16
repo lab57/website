@@ -26,7 +26,7 @@ export default function examTimer() {
 
     return (
         <>
-        <Layout>
+        {/* <Layout> */}
             <div className={styles.postIndex} suppressHydrationWarning={true}>
 
                 <div className="container">
@@ -42,12 +42,14 @@ export default function examTimer() {
                     {/* Text Lines */}
                     <div className="headerText">
                         <p className="title" contenteditable="true">Course Number</p>
-                        <p className="subtitle" contenteditable="true">Subtitle</p>
+                        <em className="subtitle" contenteditable="true">Subtitle</em>
                     </div>
                 </header>
 
                 {/* Live Clock Section */}
                 <div className="clockContainer">
+                    <div className="title" contenteditable="true"><em>Title</em></div>
+
                     <div className="clock">{timeString}</div>
                     <div className="date">{dateString}</div>
                 </div>
@@ -58,7 +60,7 @@ export default function examTimer() {
 
 
             </div>
-        </Layout>
+        {/* </Layout> */}
 
                     <style jsx>{`
                 /* Main container for the page content */
@@ -67,8 +69,12 @@ export default function examTimer() {
                     flex-direction: column;
                     align-items: center;
                     justify-content: center; /* Align to the top */
-                    min-height: 80vh;
+                    min-height: 100vh;
                     padding: 2rem;
+    line-height: 2;
+
+                    min-width: 100vw
+                    // gap: 100em
                     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
                 }
 
@@ -79,7 +85,7 @@ export default function examTimer() {
                     justify-content: center;
                     width: 100%;
                     // max-width: 10000px;
-                    // margin-bottom: 3rem;
+                    margin-bottom: 2rem;
                     // padding: 1.25rem;
                     // background-color: #fafafa;
                     // border: 1px solid #eaeaea;
@@ -159,5 +165,9 @@ export default function examTimer() {
     )
 }
 
+
+// page properties
+
 examTimer.hideNavbar = true
+// examTimer.blur = true
 

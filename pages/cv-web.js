@@ -69,7 +69,7 @@ export default function CV() {
 
                             </p>
 
-                            <p>A PDF version of my academic CV is <Link href="/CV.pdf" rel="noopener noreferrer" target="_blank">available here</Link>. A one-page resume is <Link href="/resume.pdf" rel="noopener noreferrer" target="_blank">available here.</Link></p>
+                            <p className={styles.justifytext}>A PDF version of my academic CV is <Link href="/CV.pdf" rel="noopener noreferrer" target="_blank">available here</Link>. A one-page resume is <Link href="/resume.pdf" rel="noopener noreferrer" target="_blank">available here.</Link></p>
                         </div>
                     </section>
 
@@ -213,8 +213,9 @@ export default function CV() {
                                         <em>2024-2025</em>
                                     </div>
                                     <p><em>UMass Amherst College of Information & Computer Sciences</em></p>
-                                    <p>Apply modern reinforcement learning algorithms to optimize link generation between quantum memory registers with various noise models.</p>
+                                    {/* <p>Apply modern reinforcement learning algorithms to optimize link generation between quantum memory registers with various noise models.</p> */}
                                     <ul>
+                                        <li>Applying modern reinforcement learning algorithms to optimize link generation between quantum memory registers with various noise models</li>
                                         <li>Used reinforcement learning to train a quantum circuit compiler to compile given sets of operations to a format suitable for a distributed quantum computer (DQC) minimizing teleportation operations.</li>
                                     </ul>
                                 </div>
@@ -225,23 +226,28 @@ export default function CV() {
                                         <em>2021-2024</em>
                                     </div>
                                     <p><em>University of Massachusetts Amherst</em></p>
-                                    <p>Worked on the MOLLER experiment, developing a software tool to check 'two-bounce' conditions. Validates the design of the collimator system and ensures no accidental avenues for noise.</p>
+                                    {/* <p>Worked on the MOLLER experiment, developing a software tool to check 'two-bounce' conditions. Validates the design of the collimator system and ensures no accidental avenues for noise.</p> */}
                                     <ul>
-                                        <li>Used Rust, parallelization, and highly optimized collision check algorithms to bring simulation time from several days to a couple of minutes. Presented in APS DNP CEU undergraduate poster session.</li>
-                                        <li>Set up, configured, and managed a small compute cluster for Geant4 simulations.</li>
-                                        <li>Developed algorithm to find smooth contour around electron beam profiles, considering geometric constraint.</li>
+                                        <li>Used Rust, parallelization, and optimized collision check algorithms to bring simulation time from several days to a couple of minutes. Presented in APS DNP CEU undergraduate poster session.
+                                            <ul>
+                                                <li>Checks 'two-bounce' conditions, ensuring there are no secondary sources of noise impacting the detectors. Used to validate collimator design.</li>
+                                            </ul>
+
+                                        </li>
+                                        <li>Set up, configured, and managed a small compute cluster suitable for Geant4 simulations.</li>
+                                        <li>Developed algorithm to define smooth contour around electron beam profiles produced by simulations, considering geometric constraint.</li>
                                     </ul>
                                 </div>
 
                                 <div className={styles.cvEntry}>
                                     <div className={styles.eduNameDate}>
-                                        <h2>nEXO Experiment (Photocathode)</h2>
+                                        <h2>nEXO Experiment (Kumar Lab)</h2>
                                         <em>2021-2024</em>
                                     </div>
                                     <p><em>University of Massachusetts Amherst</em></p>
-                                    <p>Under Prof. Krishna Kumar, worked on characterization of charge clusters drifting in liquid xenon produced by a laser-driven photocathode.</p>
+                                    <p>Under Prof. Krishna Kumar, worked on characterization of charge clusters drifting in liquid xenon produced by a laser-driven photocathode, in support of the development of an in-situ electron lifetime monitoring system.</p>
                                     <ul>
-                                        <li>Developed noise-reduction algorithms based on digital modelling of a shaping circuit, fourier methods, and generative neural network methods.</li>
+                                        <li>Developed noise-reduction algorithms based on digital modelling of a shaping circuit, fourier methods, and generative neural networks.</li>
                                         <li>Assembled, tested, and set up calibration pipeline for signal processing hardware.</li>
                                         <li>Work from the team presented in poster session at Neutrino 2024.</li>
                                     </ul>
@@ -249,7 +255,7 @@ export default function CV() {
 
                                 <div className={styles.cvEntry}>
                                     <div className={styles.eduNameDate}>
-                                        <h2>nEXO Experiment (Optical Simulation)</h2>
+                                        <h2>nEXO Experiment (Pocar Group)</h2>
                                         <em>2023</em>
                                     </div>
                                     <p><em>University of Massachusetts Amherst</em></p>
@@ -373,7 +379,9 @@ export default function CV() {
                                     </div>
                                     <p><em>Cornell University College of Applied & Engineering Physics</em></p>
                                     <ul>
-                                        <li>AEP3330 & AEP5330: Mechanics of Particles and Solid Bodies. ~20 student junior-level classical mechanics course</li>
+                                        <li>(F25) AEP3330 & AEP5330: Mechanics of Particles and Solid Bodies. ~20 student junior-level classical mechanics course</li>
+                                        <li>(S26) PHYS3360 & AEP3630: Electronic Circuits.</li>
+
                                     </ul>
                                 </div>
 

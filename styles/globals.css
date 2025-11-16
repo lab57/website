@@ -72,13 +72,14 @@ button {
   New styles for the split, sticky layout
 */
 
+
+
+
 /* 1. This container holds all your new sections */
 .article-body {
   line-height: 1.6;
   /* You can move global styles like line-height here */
-}
-
-
+}  
 
 
 /* 2. Each section is a flex container to create the two columns */
