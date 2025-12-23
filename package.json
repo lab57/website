@@ -13,7 +13,7 @@
     "better-react-mathjax": "^2.0.3",
     "gray-matter": "^4.0.3",
     "katex": "^0.16.9",
-    "next": "latest",
+    "next": "15.5.8",
     "p5": "^1.7.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
